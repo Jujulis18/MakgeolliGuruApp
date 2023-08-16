@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:title="Makgeolli Map"
+        android:title="@string/makgeolli_map"
         android:id="@+id/mapNav"
+        android:icon="@drawable/map"
         />
     <item
-        android:title="Articles"
+        android:title="@string/learning"
         android:id="@+id/learningNav"
+        android:icon="@drawable/book"
         />
     <item
-        android:title="Makgeolli profile"
+        android:title="@string/profile"
         android:id="@+id/profileNav"
+        android:icon="@drawable/user"
         />
 </menu>

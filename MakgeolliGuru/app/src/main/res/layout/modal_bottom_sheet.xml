@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,15 +12,30 @@
     android:padding="15dp"
     android:background="@color/white">
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
 <TextView
-android:layout_width="match_parent"
+android:layout_width="329dp"
     android:layout_height="wrap_content"
-    android:text="Makgeolli information"
+    android:text="@string/makgeolli_information"
     android:textSize="20sp"
-    android:layout_marginTop="10dp"
     android:textColor="@color/black"
     android:layout_gravity="center"
     android:gravity="center"/>
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:padding="15dp"
+        android:layout_gravity="right"
+        android:contentDescription="@string/app_name"
+        android:src="@android:drawable/ic_menu_close_clear_cancel"
+        android:id="@+id/close"/>
+
+    </LinearLayout>
 
 <LinearLayout
 android:orientation="horizontal"
@@ -75,7 +91,7 @@ android:id="@+id/folder"
                     android:layout_gravity="center_horizontal"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="Sweet"
+                    android:text="@string/sweet"
                     android:textColor="#000"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -101,7 +117,7 @@ android:id="@+id/folder"
                     android:layout_gravity="center_horizontal"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="Acidity"
+                    android:text="@string/acidity"
                     android:textColor="#000"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -128,7 +144,7 @@ android:id="@+id/folder"
                     android:layout_gravity="center_horizontal"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="Texture"
+                    android:text="@string/texture"
                     android:textColor="#000"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -154,7 +170,7 @@ android:id="@+id/folder"
                     android:layout_gravity="center_horizontal"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="Sparkling"
+                    android:text="@string/sparkling"
                     android:textColor="#000"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -194,7 +210,7 @@ android:id="@+id/folder"
         android:textSize="16dp"
         android:padding="2dp"
         android:layout_marginTop="10dp"
-        android:text="More information"
+        android:text="@string/more_info"
         android:textStyle="bold"
         android:gravity="center"/>
 
@@ -219,7 +235,7 @@ android:id="@+id/folder"
                 android:textColor="#000"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                android:text="Percentation"/>
+                android:text="@string/alcool_percentage"/>
 
         <TextView
             android:id="@+id/percentText"
@@ -230,7 +246,7 @@ android:id="@+id/folder"
             android:maxLines="1"
             android:textColor="#000"
             android:textSize="14sp"
-            android:text="description"/>
+            android:text="..."/>
 
     </LinearLayout>
 
@@ -254,7 +270,7 @@ android:id="@+id/folder"
             android:textColor="#000"
             android:textSize="14sp"
             android:textStyle="bold"
-            android:text="Ingredients"/>
+            android:text="@string/ingredients"/>
 
         <TextView
             android:id="@+id/ingredientText"
@@ -265,7 +281,7 @@ android:id="@+id/folder"
             android:maxLines="1"
             android:textColor="#000"
             android:textSize="14sp"
-            android:text="description"/>
+            android:text=".."/>
     </LinearLayout>
 
 
@@ -289,7 +305,7 @@ android:id="@+id/folder"
             android:textColor="#000"
             android:textSize="14sp"
             android:textStyle="bold"
-            android:text="Localisation"/>
+            android:text="@string/localisation"/>
 
         <TextView
             android:id="@+id/localisationText"
@@ -300,7 +316,7 @@ android:id="@+id/folder"
             android:maxLines="1"
             android:textColor="#000"
             android:textSize="14sp"
-            android:text="description"/>
+            android:text="..."/>
     </LinearLayout>
 
     <LinearLayout
@@ -323,7 +339,7 @@ android:id="@+id/folder"
             android:textColor="#000"
             android:textSize="14sp"
             android:textStyle="bold"
-            android:text="More informations:"/>
+            android:text="@string/more_infos"/>
 
         <TextView
             android:id="@+id/moreInfoText"
@@ -332,28 +348,8 @@ android:id="@+id/folder"
             android:layout_gravity="center_horizontal"
             android:textColor="#000"
             android:textSize="14sp"
-            android:text="description"/>
+            android:text="..."/>
     </LinearLayout>
-
-
-
-
-<ImageView
-android:layout_width="50dp"
-    android:layout_height="50dp"
-    android:padding="15dp"
-    android:contentDescription="@string/app_name"
-    android:src="@drawable/marker"
-    android:id="@+id/close"/>
-
-<TextView
-android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Link"
-    android:textColor="@color/black"
-    android:textSize="13sp"
-    android:padding="2dp"
-    android:layout_marginTop="10dp"/>
 
     </LinearLayout>
 

@@ -124,6 +124,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 .setOnNavigationItemSelectedListener(this);
         bottomNavigationView.setSelectedItemId(R.id.map);
         setCurrentFragment(mapFragment);
+
+
     }
 
     @Override

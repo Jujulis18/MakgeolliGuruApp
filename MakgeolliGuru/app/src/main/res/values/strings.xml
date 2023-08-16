@@ -2,4 +2,37 @@
     <string name="app_name">Makgeolli Guru</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="sweet">Sweet</string>
+    <string name="acidity">Acidity</string>
+    <string name="texture">Texture</string>
+    <string name="sparkling">Sparkling</string>
+    <string name="learnmore">Click to learn more</string>
+
+    <string name="makgeolli_information">Makgeolli informations</string>
+
+    <string name="makgeolli_map">Makgeolli map</string>
+    <string name="learning">Learning</string>
+    <string name="profile">Makgeolli profile</string>
+
+    <string name="article1">How to make makgeolli?</string>
+    <string name="article2">Makgeolli-food good match</string>
+    <string name="article3">Makgeolli profile region</string>
+    <string name="article4">Makgeolli event</string>
+    <string name="article5">Associations</string>
+
+
+    <string name="test_knowledge_link">Test your knowledge</string>
+    <string name="test_personality_link">Get your Makgeolli profile</string>
+    <string name="profile_part1">Your are :</string>
+    <string name="profile_name_sour">Sour Makgeolli</string>
+    <string name="profile_character">Your character :</string>
+    <string name="profile_description_sour">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut dictum rutrum augue in venenatis. Praesent nec rhoncus nisi</string>
+
+    <string name="more_info">More information</string>
+    <string name="alcool_percentage">Alcool percentage:</string>
+    <string name="ingredients">Ingredients:</string>
+    <string name="localisation">Localisation:</string>
+    <string name="more_infos">More information:</string>
 </resources>

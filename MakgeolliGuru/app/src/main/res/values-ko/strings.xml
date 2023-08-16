@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Makgeolli Guru</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sweet">당도</string>
+    <string name="acidity">산도</string>
+    <string name="texture">Texture</string>
+    <string name="sparkling">탄산감</string>
+    <string name="learnmore">Click to learn more</string>
+    <string name="makgeolli_information">막걸리 정보</string>
+    <string name="makgeolli_map">막걸리 지도</string>
+    <string name="learning">학습</string>
+    <string name="profile">막걸리 프로필</string>
+    <string name="article1">막걸리 요리법</string>
+    <string name="article2">막걸리와 음식의 궁합이 좋다</string>
+    <string name="article3">지역별 막걸리 프로필</string>
+    <string name="article4">막걸리 이벤트</string>
+    <string name="article5">협회</string>
+    <string name="test_knowledge_link">지식 테스트</string>
+    <string name="test_personality_link">막걸리 프로필 보기</string>
+    <string name="profile_part1">막걸리 이름:</string>
+    <string name="profile_name_sour">사워 막걸리</string>
+    <string name="profile_character">막걸리 캐릭터:</string>
+    <string name="profile_description_sour">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut dictum rutrum augue in venenatis. Praesent nec rhoncus nisi</string>
+    <string name="more_info">More information</string>
+    <string name="alcool_percentage">냉각 비율:</string>
+    <string name="ingredients">재료:</string>
+    <string name="localisation">현지화:</string>
+    <string name="more_infos">More information:</string>
+</resources>

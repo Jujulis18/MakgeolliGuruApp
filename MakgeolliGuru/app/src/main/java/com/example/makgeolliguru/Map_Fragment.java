@@ -28,6 +28,9 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.io.InputStream;
+import java.util.List;
+
 
 public class Map_Fragment extends Fragment {
 
@@ -49,6 +52,12 @@ public class Map_Fragment extends Fragment {
         // Initialize map fragment
         SupportMapFragment supportMapFragment = (SupportMapFragment)
                 getChildFragmentManager().findFragmentById(R.id.map);
+
+        // Get data
+        InputStream inputStream = getResources().openRawResource(R.raw.makgeollidata);
+        CSVFile csvFile = new CSVFile(inputStream);
+        String[][] makgeolliList = csvFile.ReadFileInto2DArray("makgeollidata");
+
 
         // Async map
         supportMapFragment.getMapAsync(new OnMapReadyCallback() {

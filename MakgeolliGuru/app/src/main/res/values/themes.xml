@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.MakgeolliGuru" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">#035460</item>
     </style>
     <!--style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!- Customize your theme here. -->
@@ -10,5 +10,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style-->
-    <style name="Theme.MakgeolliGuru" parent="Base.Theme.MakgeolliGuru" />
+    <style name="Theme.MakgeolliGuru" parent="Base.Theme.MakgeolliGuru" >
+        <item name="colorPrimary">@color/blueLight</item>
+    </style>
 </resources>

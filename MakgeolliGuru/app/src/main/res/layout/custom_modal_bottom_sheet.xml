@@ -14,7 +14,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Makgeolli informations"
+        android:text="@string/makgeolli_information"
         android:textSize="20sp"
         android:layout_marginTop="10dp"
         android:textColor="@color/design_default_color_on_secondary"

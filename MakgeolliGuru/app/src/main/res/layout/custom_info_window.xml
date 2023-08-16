@@ -36,7 +36,7 @@
             android:layout_gravity="center_horizontal"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="Sweet"
+            android:text="@string/sweet"
             android:textColor="#000"
             android:textSize="14sp"
             android:textStyle="bold" />
@@ -57,7 +57,7 @@
             android:layout_gravity="center_horizontal"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="Acidity"
+            android:text="@string/acidity"
             android:textColor="#000"
             android:textSize="14sp"
             android:textStyle="bold" />
@@ -84,7 +84,7 @@
             android:layout_gravity="center_horizontal"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="Texture"
+            android:text="@string/texture"
             android:textColor="#000"
             android:textSize="14sp"
             android:textStyle="bold" />
@@ -105,7 +105,7 @@
             android:layout_gravity="center_horizontal"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="Sparkling"
+            android:text="@string/sparkling"
             android:textColor="#000"
             android:textSize="14sp"
             android:textStyle="bold" />
@@ -134,7 +134,7 @@
             android:textSize="14sp"
             android:id="@+id/snippet"
             android:layout_margin="5dp"
-            android:text="Click to learn more"
+            android:text="@string/learnmore"
             android:padding="5dp"
           />
 

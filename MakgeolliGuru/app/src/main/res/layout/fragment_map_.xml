@@ -17,6 +17,28 @@
         map:cameraZoom="6"
         map:mapType="normal"
         map:liteMode="false"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#035460"
+        android:padding="5dp"
+        tools:ignore="MissingConstraints">
+        <ImageView
+            android:layout_width="80dp"
+            android:padding="1dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/map"
+            android:layout_gravity="left"
+
+            app:tint="@android:color/white"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/makgeolli_map"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
+    </LinearLayout>
 
 
 
