@@ -4,9 +4,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Reader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.io.FileReader;
+import java.util.stream.Collectors;
 
 public class CSVFile {
     InputStream inputStream;
@@ -20,7 +24,7 @@ public class CSVFile {
         return resultList;
     }*/
 
-    public static String[][] ReadFileInto2DArray(String filepath) {
+    public  String[][] ReadFileInto2DArray() {
         List<String> recordList = new ArrayList<String>();
 
         String delimiter = ",";
@@ -28,26 +32,36 @@ public class CSVFile {
 
         String[][] arrayToReturn;
         try {
-            FileReader fr = new FileReader(filepath);
-            BufferedReader br = new BufferedReader(fr);
+            //FileReader fr = new FileReader(filepath);
+            //BufferedReader br = new BufferedReader(fr);
+            String text = new BufferedReader(
+                    new InputStreamReader(inputStream, StandardCharsets.UTF_8))
+                    .lines()
+                    .collect(Collectors.joining("\n"));
 
-            /*while((currentLine - br.readLine()) != null){
-                recordList.add(currentLine);
+
+            recordList = Arrays.asList(text.split("\n", -1));
+            /*for(String line : lineList){
+                recordList.addAll(Arrays.asList(line.split(",", -1)));
             }*/
+
             int recordCount = recordList.size();
 
             String[] firstLine = recordList.get(0).split(delimiter);
 
             int amountOfField = firstLine.length;
 
-            arrayToReturn = new String[recordCount][amountOfField];
+            arrayToReturn = new String[recordCount-1][amountOfField];
             String[] data;
 
-            for (int i = 0; i < recordCount; i++) {
-                data = recordList.get(i).split(delimiter);
-                for (int j = 0; j < data.length; j++) {
-                    arrayToReturn[i][j] = data[j];
-                    System.out.println(String.join(",",arrayToReturn[i][j]));
+            for (int i = 1; i < recordCount; i++) {
+
+                data = recordList.get(i).replace(",,",",N/A,").split(delimiter);
+                if(data.length==amountOfField) {
+                    for (int j = 0; j < data.length; j++) {
+                        arrayToReturn[i - 1][j] = data[j];
+                        //System.out.println(String.join(",",arrayToReturn[i][j]));
+                    }
                 }
             }
 

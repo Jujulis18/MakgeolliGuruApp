@@ -57,7 +57,17 @@ android:id="@+id/folder"
     android:orientation="vertical"
     tools:ignore="UseCompoundDrawables">
 
-
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        tools:ignore="UseCompoundDrawables">
         <TextView
             android:id="@+id/makgeolliName"
             android:text="MakgeolliName"
@@ -67,7 +77,15 @@ android:id="@+id/folder"
             android:textColor="@color/black"
             android:textSize="16sp"
             android:padding="2dp"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="2dp"/>
+
+    <ImageButton
+        android:id="@+id/favorisbtn"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@android:drawable/btn_star_big_off"
+        android:background="@color/white"/>
+    </LinearLayout>
 
         <LinearLayout
             android:id="@+id/ratingStar"

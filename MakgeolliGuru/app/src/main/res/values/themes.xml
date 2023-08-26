@@ -11,6 +11,5 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style-->
     <style name="Theme.MakgeolliGuru" parent="Base.Theme.MakgeolliGuru" >
-        <item name="colorPrimary">@color/blueLight</item>
     </style>
 </resources>

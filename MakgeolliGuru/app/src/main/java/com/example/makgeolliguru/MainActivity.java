@@ -111,6 +111,12 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+
+    // Global variable
+    public static String[][] makgeolliList = new String[0][0];
+    public static String[][] favoriteList;
+
+    // Bottom navigation behavior
     BottomNavigationView bottomNavigationView;
     Map_Fragment mapFragment = new Map_Fragment();
     Learning_Fragment learningFragment = new Learning_Fragment();
