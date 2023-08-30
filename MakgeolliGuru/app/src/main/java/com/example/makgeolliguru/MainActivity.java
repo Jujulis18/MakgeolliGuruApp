@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -110,11 +111,16 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import android.view.MenuItem;
 
+import java.util.concurrent.ExecutionException;
+
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
-    // Global variable
-    public static String[][] makgeolliList = new String[0][0];
-    public static String[][] favoriteList;
+    // Shared Preference data
+    public static final String SHARED_PREF = "com.example.makgeolliguru.SHARED_PREF";
+    public static final String MAK_LIST = "com.example.makgeolliguru.MAK_LIST";
+    public static final String FAVORITE_LIST = "com.example.makgeolliguru.FAVORITE_LIST";
+
+
 
     // Bottom navigation behavior
     BottomNavigationView bottomNavigationView;
@@ -123,6 +129,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     Profile_Fragment profileFragment = new Profile_Fragment();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //makgeolliList = getDataFromAPI();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
@@ -159,8 +166,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         }
         return false;
     }
-    void setCurrentFragment(Fragment fragment){
+    public void setCurrentFragment(Fragment fragment){
         getSupportFragmentManager().beginTransaction().replace(R.id.flFragment, fragment).commit();
     }
+
+
 
 }

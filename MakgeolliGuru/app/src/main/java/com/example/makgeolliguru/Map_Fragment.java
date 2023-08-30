@@ -1,15 +1,24 @@
 package com.example.makgeolliguru;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import static com.example.makgeolliguru.MainActivity.FAVORITE_LIST;
+import static com.example.makgeolliguru.MainActivity.MAK_LIST;
+import static com.example.makgeolliguru.MainActivity.SHARED_PREF;
+
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -27,14 +36,14 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 
-import java.io.BufferedInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.BufferedReader;
 import java.io.InputStream;
-import java.net.URL;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.stream.Stream;
+import java.util.concurrent.ExecutionException;
+import java.util.stream.Collectors;
 
 
 public class Map_Fragment extends Fragment {
@@ -44,7 +53,8 @@ public class Map_Fragment extends Fragment {
     }
 
     private GoogleMap myMap;
-    static FavoriteDatabase favoriteTab = new FavoriteDatabase();
+    static String[][] favoriteTab;
+    static String[][] makgeolliListTab;
     ArrayList<Marker> mMarkerArray = new ArrayList<Marker>();
 
 
@@ -61,11 +71,20 @@ public class Map_Fragment extends Fragment {
         SupportMapFragment supportMapFragment = (SupportMapFragment)
                 getChildFragmentManager().findFragmentById(R.id.map);
 
+        SharedPreferences prefs = getContext().getSharedPreferences(SHARED_PREF, MODE_PRIVATE);
+        String makgeolliListString = prefs.getString(MAK_LIST, null);
+        String favoriteListString = prefs.getString(FAVORITE_LIST, null);
 
-        if(MainActivity.makgeolliList.length==0) {
+        if(makgeolliListString == null) {
             getData();
+            makgeolliListString = prefs.getString(MAK_LIST, null);
+            makgeolliListTab = new MakgeolliList(makgeolliListString).ReadFileInto2DArray();
+
+        }else {
+            makgeolliListTab = new MakgeolliList(makgeolliListString).ReadFileInto2DArray();
+            favoriteTab = new MakgeolliList(favoriteListString).ReadFileInto2DArray();
         }
-        String[][] makgeolliList = MainActivity.makgeolliList;
+
 
 //_______________Put Listener for update data ______________________________//
 
@@ -77,7 +96,13 @@ public class Map_Fragment extends Fragment {
                 getDataFromAPI();
                 /*private val callback = new OnMapReadyCallback() { updateMap(); };
                 supportMapFragment.getMapAsync(callback);*/
-                updateMap();
+                //updateMap(inflater, container);
+                if(!mMarkerArray.isEmpty()) {
+                    mMarkerArray.clear();
+                    myMap.clear();
+                }
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.detach(Map_Fragment.this).attach(Map_Fragment.this).commit();
             }
         });
 
@@ -97,9 +122,11 @@ public class Map_Fragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Toast.makeText(container.getContext(), "Close is Clicked", Toast.LENGTH_SHORT).show();
-                filterMarker(chipGroup, mMarkerArray,makgeolliList);
+                filterMarker(chipGroup, mMarkerArray,makgeolliListTab);
             }
         });
+
+
 //________________ Async map_________________________________________//
         supportMapFragment.getMapAsync(new OnMapReadyCallback() {
             @Override
@@ -114,11 +141,11 @@ public class Map_Fragment extends Fragment {
 
                 // boucle for to display the map with markers
                 MarkerOptions marker;
-                for (int i = 0; i < makgeolliList.length; i++) {
-                    if(makgeolliList[i][0]!=null) {
+                for (int i = 0; i < makgeolliListTab.length; i++) {
+                    if(makgeolliListTab[i][0]!=null) {
                         // Get the coordonate of each marker
-                        double[] coords = {Double.parseDouble(makgeolliList[i][7]), Double.parseDouble(makgeolliList[i][6])};
-                        String[] info = makgeolliList[i];
+                        double[] coords = {Double.parseDouble(makgeolliListTab[i][7]), Double.parseDouble(makgeolliListTab[i][6])};
+                        String[] info = makgeolliListTab[i];
                         LatLng latLng = new LatLng(coords[1], coords[0]);
 
                         String snippet = String.format("%s %s %s %s", info[1], info[2], info[3], info[4]);
@@ -157,6 +184,7 @@ public class Map_Fragment extends Fragment {
 
             }
 
+
 // ______________________ Click on Info window  _________________________//
             public void onInfoWindowClick(Marker marker) {
                 Toast.makeText(container.getContext(), "Info window clicked",
@@ -167,7 +195,7 @@ public class Map_Fragment extends Fragment {
                 // marker id format = "m[id]"
                 // Remove the first character with substring
                 String idSelected = marker.getId().substring(1);
-                String information = String.format("Sweet: %s\n Acidity %s \nTexture %s\nSparkling %s\nFlavor/ingredients %s\nLocalisation %s\n percent alcohol %s\nArtisanal %s\n\n<h3>Comment </h3>", makgeolliList[Integer.parseInt(idSelected)][1], makgeolliList[Integer.parseInt(idSelected)][2], makgeolliList[Integer.parseInt(idSelected)][3], makgeolliList[Integer.parseInt(idSelected)][4], makgeolliList[Integer.parseInt(idSelected)][5], makgeolliList[Integer.parseInt(idSelected)][8], makgeolliList[Integer.parseInt(idSelected)][9], makgeolliList[Integer.parseInt(idSelected)][10]);
+                String information = String.format("Sweet: %s\n Acidity %s \nTexture %s\nSparkling %s\nFlavor/ingredients %s\nLocalisation %s\n percent alcohol %s\nArtisanal %s\n\n<h3>Comment </h3>", makgeolliListTab[Integer.parseInt(idSelected)][1], makgeolliListTab[Integer.parseInt(idSelected)][2], makgeolliListTab[Integer.parseInt(idSelected)][3], makgeolliListTab[Integer.parseInt(idSelected)][4], makgeolliListTab[Integer.parseInt(idSelected)][5], makgeolliListTab[Integer.parseInt(idSelected)][8], makgeolliListTab[Integer.parseInt(idSelected)][9], makgeolliListTab[Integer.parseInt(idSelected)][10]);
 
 // TODO: if makgeolli on FavoriteTab = setSelected()
 
@@ -177,39 +205,40 @@ public class Map_Fragment extends Fragment {
 
                 TextView makgeolliName = (TextView) bottomSheetView.findViewById(R.id.makgeolliName);
                 // To show rating on RatingBar
-                makgeolliName.setText(makgeolliList[Integer.parseInt(idSelected)][0]);
+                makgeolliName.setText(makgeolliListTab[Integer.parseInt(idSelected)][0]);
 
                 RatingBar ratingBarSweet = (RatingBar) bottomSheetView.findViewById(R.id.ratingBarSweet);
                 // To show rating on RatingBar
-                ratingBarSweet.setRating(Float.parseFloat(makgeolliList[Integer.parseInt(idSelected)][1]));
+                ratingBarSweet.setRating(Float.parseFloat(makgeolliListTab[Integer.parseInt(idSelected)][1]));
 
                 RatingBar ratingBarAcidity = (RatingBar) bottomSheetView.findViewById(R.id.ratingBarAcidity);
                 // To show rating on RatingBar
-                ratingBarAcidity.setRating(Float.parseFloat(makgeolliList[Integer.parseInt(idSelected)][2]));
+                ratingBarAcidity.setRating(Float.parseFloat(makgeolliListTab[Integer.parseInt(idSelected)][2]));
 
                 RatingBar ratingBarTexture = (RatingBar) bottomSheetView.findViewById(R.id.ratingBarTexture);
                 // To show rating on RatingBar
-                ratingBarTexture.setRating(Float.parseFloat(makgeolliList[Integer.parseInt(idSelected)][3]));
+                ratingBarTexture.setRating(Float.parseFloat(makgeolliListTab[Integer.parseInt(idSelected)][3]));
 
                 RatingBar ratingBarSparkling = (RatingBar) bottomSheetView.findViewById(R.id.ratingBarSparkling);
                 // To show rating on RatingBar
-                ratingBarSparkling.setRating(Float.parseFloat(makgeolliList[Integer.parseInt(idSelected)][4]));
+                ratingBarSparkling.setRating(Float.parseFloat(makgeolliListTab[Integer.parseInt(idSelected)][4]));
 
                 TextView ingredient = (TextView) bottomSheetView.findViewById(R.id.ingredientText);
                 // To show rating on RatingBar
-                ingredient.setText(makgeolliList[Integer.parseInt(idSelected)][9]);
+                ingredient.setText(makgeolliListTab[Integer.parseInt(idSelected)][9]);
 
                 TextView alcoolPercent = (TextView) bottomSheetView.findViewById(R.id.percentText);
                 // To show rating on RatingBar
-                alcoolPercent.setText(makgeolliList[Integer.parseInt(idSelected)][8]);
+                alcoolPercent.setText(makgeolliListTab[Integer.parseInt(idSelected)][8]);
 
                 TextView localisation = (TextView) bottomSheetView.findViewById(R.id.localisationText);
                 // To show rating on RatingBar
-                localisation.setText(makgeolliList[Integer.parseInt(idSelected)][5]);
+                localisation.setText(makgeolliListTab[Integer.parseInt(idSelected)][5]);
 
                 TextView description = (TextView) bottomSheetView.findViewById(R.id.moreInfoText);
                 // To show rating on RatingBar
-                description.setText(makgeolliList[Integer.parseInt(idSelected)][10]);
+                description.setText(makgeolliListTab[Integer.parseInt(idSelected)][10]);
+
 
                 bottomSheetView.findViewById(R.id.close).setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -222,20 +251,44 @@ public class Map_Fragment extends Fragment {
 
 //_________________________________Favorite button___________________________________//
                 final ImageButton favoritebtn = bottomSheetView.findViewById(R.id.favorisbtn);
+                if(favoriteTab!=null) {
+                    for (int i = 0; i < favoriteTab.length; i++) {
+                        if (favoriteTab[i][0].equals(makgeolliListTab[Integer.parseInt(idSelected)][0])) {
+                            favoritebtn.setSelected(true);
+                            favoritebtn.setImageResource(android.R.drawable.btn_star_big_on);
+                            break;
+                        }
+                    }
+                }
+
                 favoritebtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Toast.makeText(container.getContext(), "Saved as favorite..", Toast.LENGTH_SHORT).show();
                         // save as favorite
                         favoritebtn.setSelected(!favoritebtn.isSelected());
+                        SharedPreferences prefs = getContext().getSharedPreferences(SHARED_PREF, MODE_PRIVATE);
+                        String favoriteListString = prefs.getString(FAVORITE_LIST, null);
+                        if(favoriteListString==null){favoriteListString="";}
+                        MakgeolliList makgeolliList = new MakgeolliList(favoriteListString);
+
+                        String text;
+
                         if( favoritebtn.isSelected()){
                             favoritebtn.setImageResource(android.R.drawable.btn_star_big_on);
-                            favoriteTab.setVar(Integer.parseInt(idSelected),makgeolliList[Integer.parseInt(idSelected)]);
+                            // Save data on String
+                            text = makgeolliList.addDataOnString(makgeolliListTab[Integer.parseInt(idSelected)]);
+
+                            //favoriteTab.setVar(Integer.parseInt(idSelected),makgeolliListTab[Integer.parseInt(idSelected)]);
                         }else{
                             favoritebtn.setImageResource(android.R.drawable.btn_star_big_off);
                             // delete from database
-                            favoriteTab.deleteFavorite(Integer.parseInt(idSelected));
+                            text = makgeolliList.deleteDataFromString(makgeolliListTab[Integer.parseInt(idSelected)]);
                         }
+                        SharedPreferences.Editor editor = prefs.edit();
+                        editor.putString(FAVORITE_LIST, text);
+                        editor.apply();
+                        favoriteTab = makgeolliList.ReadFileInto2DArray();
                     }
                 });
                 bottomSheetDialog.setContentView(bottomSheetView);
@@ -244,16 +297,26 @@ public class Map_Fragment extends Fragment {
             }
         });
 
+
+
         return view;
     }
 
     public Void getData(){
         InputStream inputStream = getResources().openRawResource(R.raw.makgeollidata);
-        CSVFile csvFile = new CSVFile(inputStream);
-        MainActivity.makgeolliList = csvFile.ReadFileInto2DArray();
+        //CSVFile csvFile = new CSVFile(inputStream);
+        //MainActivity.makgeolliList = csvFile.ReadFileInto2DArray();
+        SharedPreferences.Editor editor = getContext().getSharedPreferences(SHARED_PREF, MODE_PRIVATE).edit();
+        String text = new BufferedReader(
+                new InputStreamReader(inputStream, StandardCharsets.UTF_8))
+                .lines()
+                .collect(Collectors.joining("\n"));
+        editor.putString(MAK_LIST, text);
+        editor.apply();
         //Globals.getInstance().setMakgeolliList(makgeolliList);
         return null;
     }
+
 
     public void filterMarker(ChipGroup chipGroup, ArrayList<Marker> mMarkerArray, String[][] completeList){
         mMarkerArray.forEach(marker -> marker.setVisible(true));
@@ -262,8 +325,16 @@ public class Map_Fragment extends Fragment {
         boolean isSparkling = ((Chip) chipGroup.findViewById(R.id.chipSparkling)).isChecked();
         boolean isNuts = ((Chip) chipGroup.findViewById(R.id.chipNuts)).isChecked();
         boolean isFruity = ((Chip) chipGroup.findViewById(R.id.chipFruity)).isChecked();
+        boolean isFavorite = ((Chip) chipGroup.findViewById(R.id.favorite)).isChecked();
 
         for( Marker marker : mMarkerArray){
+            if(isFavorite){
+                for(int i=0; i<favoriteTab.length; i++) {
+                    if (!favoriteTab[i][0].contains(completeList[Integer.parseInt(marker.getId().substring(1))][0])) {
+                        marker.setVisible(false);
+                    }
+                }
+            }
             if(isFruity){
                 if (!completeList[Integer.parseInt(marker.getId().substring(1))][12].contains("Yes")) {
                     marker.setVisible(false);
@@ -290,67 +361,30 @@ public class Map_Fragment extends Fragment {
                 }
             }
 
-        }
 
+        }
 
     }
 
-    private void getDataFromAPI() {
+    private Void getDataFromAPI() {
 
         // creating a string variable for URL.
         String FILE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSZvW6YRkTSqL5ZDTkDMG7S6xhi8J2ANRj2rGJmKFY99M8O-q2DRoleWNu_aRRiahHscoU76mVKCszt/pub?gid=0&single=true&output=csv";
 
-        new DownloadData().execute(FILE_URL);
-    }
+        try {
 
-    public void updateMap(){
-        String[][] makgeolliList = MainActivity.makgeolliList;
-        if(!mMarkerArray.isEmpty()) {
-            mMarkerArray.clear();
-            myMap.clear();
-            
+            String text = new DownloadData().execute(FILE_URL).get();
+
+            SharedPreferences.Editor editor = getContext().getSharedPreferences(SHARED_PREF, MODE_PRIVATE).edit();
+            editor.putString(MAK_LIST, text);
+            editor.apply();
+
+        } catch (ExecutionException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
-        // boucle for to display the map with markers
-        MarkerOptions marker;
-        for (int i = 0; i < makgeolliList.length; i++) {
-            if(makgeolliList[i][0]!=null) {
-                // Get the coordonate of each marker
-                double[] coords = {Double.parseDouble(makgeolliList[i][7]), Double.parseDouble(makgeolliList[i][6])};
-                String[] info = makgeolliList[i];
-                LatLng latLng = new LatLng(coords[1], coords[0]);
-
-                String snippet = String.format("%s %s %s %s", info[1], info[2], info[3], info[4]);
-
-                int height = 100;
-                int width = 100;
-                Bitmap b;
-                boolean fruity = (info[12].contains("Yes"));
-                boolean nuts = (info[13].contains("Yes"));
-                if(fruity){
-                    b = BitmapFactory.decodeResource(getResources(), R.drawable.marker_pink);
-
-                } else if (nuts) {
-                    b = BitmapFactory.decodeResource(getResources(), R.drawable.marker_orange);
-
-                } else if (Integer.parseInt(info[4]) > 3) {
-                    b = BitmapFactory.decodeResource(getResources(), R.drawable.marker_green);
-
-                }else{
-                    b = BitmapFactory.decodeResource(getResources(), R.drawable.marker);
-                }
-                Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
-
-                marker = new MarkerOptions()
-                        .position(latLng)
-                        .title(info[0])
-                        .snippet(snippet)
-                        .icon(BitmapDescriptorFactory.fromBitmap(smallMarker));
-
-                Marker newMarker = myMap.addMarker(marker);
-                mMarkerArray.add(newMarker);
-            }
-        }
-
+        return null;
     }
 
 }

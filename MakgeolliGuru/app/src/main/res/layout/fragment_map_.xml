@@ -63,7 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="0dp"
-            android:text="Fruity"
+            android:text="@string/fruity"
             android:checkable="true"
             app:chipStartPadding="10dp"
             android:textAlignment="center" />
@@ -73,7 +73,7 @@
             style="@style/ThinnerChip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sour"
+            android:text="@string/acidity"
             android:checkable="true"
             android:textAlignment="center" />
 
@@ -82,7 +82,7 @@
             style="@style/ThinnerChip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sparkling"
+            android:text="@string/sparkling"
             android:checkable="true"
             android:textAlignment="center" />
 
@@ -91,7 +91,7 @@
             style="@style/ThinnerChip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nuts"
+            android:text="@string/nuts"
             android:checkable="true"
             android:textAlignment="center" />
 
@@ -100,7 +100,7 @@
             style="@style/ThinnerChip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sweet"
+            android:text="@string/sweet"
             android:checkable="true"
 
             android:textAlignment="center" />
@@ -110,6 +110,7 @@
             style="@style/ThinnerChip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@string/favorite"
             android:icon="@android:drawable/btn_star_big_on"
             android:checkable="true"
 
@@ -120,7 +121,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/blueLight"
-            android:text="Filter"
+            android:text="@string/filter"
             android:textAlignment="center" />
     </com.google.android.material.chip.ChipGroup>
 

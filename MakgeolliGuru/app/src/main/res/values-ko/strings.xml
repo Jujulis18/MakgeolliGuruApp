@@ -6,6 +6,10 @@
     <string name="acidity">산도</string>
     <string name="texture">Texture</string>
     <string name="sparkling">탄산감</string>
+    <string name="fruity">과일 맛</string>
+    <string name="favorite">저장</string>
+    <string name="filter">Filter</string>
+    <string name="nuts">견과</string>
     <string name="learnmore">Click to learn more</string>
     <string name="makgeolli_information">막걸리 정보</string>
     <string name="makgeolli_map">막걸리 지도</string>

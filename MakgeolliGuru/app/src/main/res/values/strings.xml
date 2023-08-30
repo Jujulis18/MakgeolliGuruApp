@@ -8,6 +8,10 @@
     <string name="acidity">Acidity</string>
     <string name="texture">Texture</string>
     <string name="sparkling">Sparkling</string>
+    <string name="fruity">Fruity</string>
+    <string name="favorite">Favorite</string>
+    <string name="filter">Filter</string>
+    <string name="nuts">Nuts</string>
     <string name="learnmore">Click to learn more</string>
 
     <string name="makgeolli_information">Makgeolli informations</string>
@@ -35,4 +39,5 @@
     <string name="ingredients">Ingredients:</string>
     <string name="localisation">Localisation:</string>
     <string name="more_infos">More information:</string>
+
 </resources>
