@@ -15,6 +15,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -97,10 +98,11 @@ public class Map_Fragment extends Fragment {
                 /*private val callback = new OnMapReadyCallback() { updateMap(); };
                 supportMapFragment.getMapAsync(callback);*/
                 //updateMap(inflater, container);
-                if(!mMarkerArray.isEmpty()) {
+                /*if(!mMarkerArray.isEmpty()) {
                     mMarkerArray.clear();
                     myMap.clear();
-                }
+                }*/
+                Toast.makeText(container.getContext(), "Refresh the page, please",Toast.LENGTH_SHORT).show();
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.detach(Map_Fragment.this).attach(Map_Fragment.this).commit();
             }
@@ -112,8 +114,8 @@ public class Map_Fragment extends Fragment {
             public void onCheckedChanged(ChipGroup chipGroup, int i) {
 
                 Chip chip = chipGroup.findViewById(i);
-                if (chip != null)
-                    Toast.makeText(container.getContext(), "Chip is ", Toast.LENGTH_SHORT).show();
+                /*if (chip != null)
+                    Toast.makeText(container.getContext(), "Chip is ", Toast.LENGTH_SHORT).show();*/
             }
         });
 
@@ -121,7 +123,7 @@ public class Map_Fragment extends Fragment {
         chip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(container.getContext(), "Close is Clicked", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(container.getContext(), "Close is Clicked", Toast.LENGTH_SHORT).show();
                 filterMarker(chipGroup, mMarkerArray,makgeolliListTab);
             }
         });
@@ -187,8 +189,7 @@ public class Map_Fragment extends Fragment {
 
 // ______________________ Click on Info window  _________________________//
             public void onInfoWindowClick(Marker marker) {
-                Toast.makeText(container.getContext(), "Info window clicked",
-                        Toast.LENGTH_SHORT).show();
+                //Toast.makeText(container.getContext(), "Info window clicked", Toast.LENGTH_SHORT).show();
                 myMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(container.getContext()));
 
                 // open modal bottom sheet (+learn more)
@@ -243,7 +244,7 @@ public class Map_Fragment extends Fragment {
                 bottomSheetView.findViewById(R.id.close).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(container.getContext(), "Folder Clicked..", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(container.getContext(), "Folder Clicked..", Toast.LENGTH_SHORT).show();
                         // dismiss closes the bottom sheet
                         bottomSheetDialog.dismiss();
                     }
@@ -326,12 +327,22 @@ public class Map_Fragment extends Fragment {
         boolean isNuts = ((Chip) chipGroup.findViewById(R.id.chipNuts)).isChecked();
         boolean isFruity = ((Chip) chipGroup.findViewById(R.id.chipFruity)).isChecked();
         boolean isFavorite = ((Chip) chipGroup.findViewById(R.id.favorite)).isChecked();
-
+        Log.w("MakgeolliGuru", "filter ongoing");
         for( Marker marker : mMarkerArray){
             if(isFavorite){
+
+                Log.w("MakgeolliGuru", String.format("%d", favoriteTab.length));
+                boolean visible = false;
                 for(int i=0; i<favoriteTab.length; i++) {
-                    if (!favoriteTab[i][0].contains(completeList[Integer.parseInt(marker.getId().substring(1))][0])) {
+                    Log.w("MakgeolliGuru", String.format("favoriteTab: %s", favoriteTab[i][0]));
+                    Log.w("MakgeolliGuru", String.format("completeList: %s", completeList[Integer.parseInt(marker.getId().substring(1))][0]));
+                    if (!visible && !favoriteTab[i][0].contains(completeList[Integer.parseInt(marker.getId().substring(1))][0])) {
                         marker.setVisible(false);
+                    }
+                    else{
+                        Log.w("MakgeolliGuru", "visible");
+                        visible = true;
+                        marker.setVisible(true);
                     }
                 }
             }
