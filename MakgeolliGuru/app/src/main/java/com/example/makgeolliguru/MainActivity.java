@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -120,6 +121,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     public static final String MAK_LIST = "com.example.makgeolliguru.MAK_LIST";
     public static final String FAVORITE_LIST = "com.example.makgeolliguru.FAVORITE_LIST";
 
+    public static final String ARTICLE_LIST = "com.example.makgeolliguru.ARTICLE_LIST";
+
 
 
     // Bottom navigation behavior
@@ -130,6 +133,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //makgeolliList = getDataFromAPI();
+        System.out.print("FAVORITE_LIST:");
+        System.out.print(FAVORITE_LIST);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         bottomNavigationView = findViewById(R.id.bottomNavigationView);

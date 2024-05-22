@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#035460"
+        android:padding="5dp">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/book"
+            android:layout_gravity="left"
+            android:padding="1dp"
+            app:tint="@android:color/white"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/learning"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
+
+    </LinearLayout>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+    <!-- Title -->
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Article Title"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:padding="16dp"/>
+
+    <!-- Intro -->
+    <TextView
+        android:id="@+id/IntroView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Paragraph 3 Text"
+        android:padding="16dp"/>
+
+    <!-- Paragraph 1 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <!-- Image -->
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/book"
+            />
+
+        <!-- Text -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:orientation="vertical">
+
+            <!-- Paragraph Title -->
+            <TextView
+                android:id="@+id/paragraphTitle1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Paragraph 1 Title"
+                android:textStyle="bold"/>
+
+            <!-- Paragraph Text -->
+            <TextView
+                android:id="@+id/paragraphText1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Paragraph 1 Text"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Paragraph 2 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <!-- Text -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:orientation="vertical">
+
+            <!-- Paragraph Title -->
+            <TextView
+                android:id="@+id/paragraphTitle2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Paragraph 2 Title"
+                android:textStyle="bold"/>
+
+            <!-- Paragraph Text -->
+            <TextView
+                android:id="@+id/paragraphText2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Paragraph 2 Text"/>
+        </LinearLayout>
+
+        <!-- Image -->
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/book"/>
+    </LinearLayout>
+
+    <!-- Paragraph 3 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <!-- Image -->
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/book"/>
+
+        <!-- Text -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:orientation="vertical">
+
+            <!-- Paragraph Title -->
+            <TextView
+                android:id="@+id/paragraphTitle3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Paragraph 3 Title"
+                android:textStyle="bold"/>
+
+            <!-- Paragraph Text -->
+            <TextView
+                android:id="@+id/paragraphText3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Paragraph 3 Text"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <!-- Title -->
+    <TextView
+        android:id="@+id/ConclusionView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Paragraph 3 Text"
+        android:padding="16dp"/>
+
+</LinearLayout>
+    </ScrollView>
+</LinearLayout>

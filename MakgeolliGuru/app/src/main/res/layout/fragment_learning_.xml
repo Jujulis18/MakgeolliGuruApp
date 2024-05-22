@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Learning_Fragment">
+
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
@@ -42,7 +38,9 @@
         android:layout_marginTop="20dp"
         android:layout_width="320dp"
         android:layout_height="100dp"
-        android:backgroundTint="#D1FFFD">
+        android:backgroundTint="#D1FFFD"
+        android:clickable="true"
+        android:id="@+id/card1">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -50,6 +48,7 @@
             android:src="@drawable/logo"
             android:layout_gravity="left"
             android:padding="2dp"
+            android:id="@+id/image1"
             />
 
         <TextView
@@ -59,7 +58,8 @@
             android:textSize="16dp"
             android:gravity="center"
             android:layout_gravity="right"
-            android:textColor="#035460"/>
+            android:textColor="#035460"
+            android:id="@+id/article1"/>
 
     </androidx.cardview.widget.CardView>
 
@@ -68,7 +68,9 @@
         android:layout_marginTop="20dp"
         android:layout_width="320dp"
         android:layout_height="100dp"
-        android:backgroundTint="#D1FFFD">
+        android:backgroundTint="#D1FFFD"
+        android:clickable="true"
+        android:id="@+id/card2">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -86,7 +88,8 @@
             android:gravity="center"
             android:layout_gravity="right"
             android:textColor="#035460"
-            android:padding="10dp"/>
+            android:padding="10dp"
+            android:id="@+id/article2"/>
 
     </androidx.cardview.widget.CardView>
 
@@ -95,7 +98,9 @@
         android:layout_marginTop="20dp"
         android:layout_width="320dp"
         android:layout_height="100dp"
-        android:backgroundTint="#D1FFFD">
+        android:backgroundTint="#D1FFFD"
+        android:clickable="true"
+        android:id="@+id/card3">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -113,17 +118,19 @@
             android:gravity="center"
             android:textColor="#035460"
             android:layout_gravity="right"
-            android:padding="10dp"/>
+            android:padding="10dp"
+            android:id="@+id/article3"/>
 
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/fill_profile_card_view"
+        android:id="@+id/card4"
         android:layout_gravity="center|top"
         android:layout_marginTop="20dp"
         android:layout_width="320dp"
         android:layout_height="100dp"
-        android:backgroundTint="#D1FFFD">
+        android:backgroundTint="#D1FFFD"
+        android:clickable="true">
 
         <ImageView
             android:id="@+id/imageView"
@@ -142,7 +149,8 @@
             android:gravity="center"
             android:layout_gravity="right"
             android:textColor="#035460"
-            android:padding="10dp"/>
+            android:padding="10dp"
+            android:id="@+id/article4"/>
 
     </androidx.cardview.widget.CardView>
 
@@ -151,7 +159,10 @@
         android:layout_marginTop="20dp"
         android:layout_width="320dp"
         android:layout_height="100dp"
-        android:backgroundTint="#D1FFFD">
+        android:backgroundTint="#D1FFFD"
+        android:clickable="true"
+        android:focusable="true"
+        android:id="@+id/card5">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -169,10 +180,10 @@
             android:gravity="center"
             android:layout_gravity="right"
             android:textColor="#035460"
-            android:padding="10dp"/>
+            android:padding="10dp"
+            android:id="@+id/article5"/>
 
     </androidx.cardview.widget.CardView>
 
 </LinearLayout>
 
-</FrameLayout>

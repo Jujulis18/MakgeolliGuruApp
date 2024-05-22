@@ -45,6 +45,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
+import java.util.Locale;
 
 
 public class Map_Fragment extends Fragment {
@@ -226,7 +227,12 @@ public class Map_Fragment extends Fragment {
 
                 TextView ingredient = (TextView) bottomSheetView.findViewById(R.id.ingredientText);
                 // To show rating on RatingBar
-                ingredient.setText(makgeolliListTab[Integer.parseInt(idSelected)][9]);
+                if(getCurrentLanguage()=="kr"){
+                    ingredient.setText(makgeolliListTab[Integer.parseInt(idSelected)][16]);
+                }else{
+                    ingredient.setText(makgeolliListTab[Integer.parseInt(idSelected)][9]);
+                }
+
 
                 TextView alcoolPercent = (TextView) bottomSheetView.findViewById(R.id.percentText);
                 // To show rating on RatingBar
@@ -238,7 +244,11 @@ public class Map_Fragment extends Fragment {
 
                 TextView description = (TextView) bottomSheetView.findViewById(R.id.moreInfoText);
                 // To show rating on RatingBar
-                description.setText(makgeolliListTab[Integer.parseInt(idSelected)][10]);
+                if(getCurrentLanguage()=="kr"){
+                    description.setText(makgeolliListTab[Integer.parseInt(idSelected)][17]);
+                }else{
+                    description.setText(makgeolliListTab[Integer.parseInt(idSelected)][10]);
+                }
 
 
                 bottomSheetView.findViewById(R.id.close).setOnClickListener(new View.OnClickListener() {
@@ -301,6 +311,13 @@ public class Map_Fragment extends Fragment {
 
 
         return view;
+    }
+
+
+
+    public static String getCurrentLanguage() {
+        Locale currentLocale = Locale.getDefault();
+        return currentLocale.getLanguage();
     }
 
     public Void getData(){

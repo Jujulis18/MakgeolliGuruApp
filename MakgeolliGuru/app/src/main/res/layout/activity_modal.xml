@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         app:backgroundTint="#035460"
         android:src="@drawable/marker"
-        app:elevation="12dp"
+        app:elevation="10dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_margin="40dp"/>

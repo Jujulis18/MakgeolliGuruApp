@@ -38,7 +38,7 @@ public class MakgeolliList {
             int size = 0;
             for (int i = 0; i < recordCount; i++) {
                 data = recordList.get(i).replace(",,",",N/A,").split(delimiter);
-                if(!data[0].contains("ame")) {
+                if(!data[0].contains("ame")&&!data[0].contains("order")) {
                     if (data.length == amountOfField && data[0]!=null) {
                         for (int j = 0; j < data.length; j++) {
                             arrayToReturn[size][j] = data[j].strip();
