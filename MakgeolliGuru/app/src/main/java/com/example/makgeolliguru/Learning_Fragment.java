@@ -21,6 +21,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,75 +44,58 @@ public class Learning_Fragment extends Fragment  {
         SharedPreferences prefs = getContext().getSharedPreferences(SHARED_PREF, MODE_PRIVATE);
         String articleListString = prefs.getString(ARTICLE_LIST, null);
 
-        if(articleListString == null) {
+        if (articleListString == null) {
             getData();
             articleListString = prefs.getString(ARTICLE_LIST, null);
-            articleListTab = new MakgeolliList(articleListString).ReadFileInto2DArray();
-
-        }else{
-            articleListTab = new MakgeolliList(articleListString).ReadFileInto2DArray();
 
         }
+        articleListTab = new MakgeolliList(articleListString).ReadFileInto2DArray();
 
-        for (int id = 0; id < 5; id++) {
-            String title = articleListTab[id][1]; // Supposons que articleListTab est votre tableau de données
+        LinearLayout dynamicContent = view.findViewById(R.id.dynamic_content);
 
-            // Formez l'ID en concaténant "article" avec le numéro d'article
-            String textViewId = "article" + (id + 1);
+        CardView cardView = null;
+        for (int id = 0; id < articleListTab.length; id++) {
+            String title = articleListTab[id][1]; // Assuming articleListTab is your data array
 
-            // Utilisez getResources().getIdentifier() pour obtenir l'ID de ressource
-            int resourceId = getResources().getIdentifier(textViewId, "id", getActivity().getPackageName());
+            // Create a new CardView
+            cardView = (CardView) inflater.inflate(R.layout.cardview_layout, dynamicContent, false);
 
-            // Assurez-vous que resourceId n'est pas 0 avant d'essayer de trouver le TextView
-            if (resourceId != 0) {
-                // Trouvez le TextView par son ID
-                TextView myTextView = view.findViewById(resourceId);
+            // Set the content of the CardView
+            TextView textView = cardView.findViewById(R.id.articleTextView);
+            textView.setText(Html.fromHtml(title, Html.FROM_HTML_MODE_COMPACT));
 
-                // Définissez le texte dans le TextView
-                if (myTextView != null) {
-                    myTextView.setText(Html.fromHtml(title, Html.FROM_HTML_MODE_COMPACT));
-                } else {
-                    Log.e("TextView Error", "TextView not found for ID: " + textViewId);
+
+            final int currentId = id;
+            cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Action à exécuter lorsque la CardView est cliquée
+                    Toast.makeText(getActivity(), "CardView cliquée!", Toast.LENGTH_SHORT).show();
+                    Article_Fragment articleFragment = Article_Fragment.newInstance(currentId);
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.flFragment, articleFragment);
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
+
                 }
-            } else {
-                Log.e("Resource Error", "Resource ID not found for: " + textViewId);
-            }
-
-            String cardViewId = "card" + (id + 1);
-            int resourceCardId = getResources().getIdentifier(cardViewId, "id", getActivity().getPackageName());
-
-            // Assurez-vous que resourceId n'est pas 0 avant d'essayer de trouver le TextView
-            if (resourceCardId != 0) {
-                CardView cardView = view.findViewById(resourceCardId);
-                final int currentId = id+1;
-                cardView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        // Action à exécuter lorsque la CardView est cliquée
-                        Toast.makeText(getActivity(), "CardView cliquée!", Toast.LENGTH_SHORT).show();
-                        Article_Fragment articleFragment = Article_Fragment.newInstance(currentId);
-                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(R.id.flFragment, articleFragment);
-                        fragmentTransaction.addToBackStack(null);
-                        fragmentTransaction.commit();
-
-                    }
-                });
-            }
+            });
+            dynamicContent.addView(cardView);
         }
-        /*ImageButton closebtn = view.findViewById(R.id.closebtn);
+
+        /*ImageButton backbtn = view.findViewById(R.id.backbtn);
         FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-        closebtn.setOnClickListener(new View.OnClickListener() {
+        backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 fragmentManager
                         .beginTransaction()
-                        .replace(R.id.flFragment, new Profile_Fragment())
+                        .replace(R.id.flFragment, new Learning_Fragment())
                         .addToBackStack(null)  // Optional: Add to back stack for fragment navigation
                         .commit();
             }
         });*/
+
 
         // Inflate the layout for this fragment
         return view;

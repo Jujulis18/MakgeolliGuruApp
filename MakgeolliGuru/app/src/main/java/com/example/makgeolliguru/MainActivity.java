@@ -120,9 +120,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     public static final String SHARED_PREF = "com.example.makgeolliguru.SHARED_PREF";
     public static final String MAK_LIST = "com.example.makgeolliguru.MAK_LIST";
     public static final String FAVORITE_LIST = "com.example.makgeolliguru.FAVORITE_LIST";
-
     public static final String ARTICLE_LIST = "com.example.makgeolliguru.ARTICLE_LIST";
-
 
 
     // Bottom navigation behavior
@@ -132,8 +130,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     Profile_Fragment profileFragment = new Profile_Fragment();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //makgeolliList = getDataFromAPI();
-        System.out.print("FAVORITE_LIST:");
         System.out.print(FAVORITE_LIST);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -142,8 +138,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 .setOnNavigationItemSelectedListener(this);
         bottomNavigationView.setSelectedItemId(R.id.map);
         setCurrentFragment(mapFragment);
-
-
     }
 
     @Override

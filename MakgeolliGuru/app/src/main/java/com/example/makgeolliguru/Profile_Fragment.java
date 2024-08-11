@@ -6,7 +6,9 @@ import android.os.Bundle;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +32,9 @@ public class Profile_Fragment extends Fragment  {
         ImageButton infobtn = view.findViewById(R.id.buttonInfo);
         ImageView launch_questionnaire = view.findViewById(R.id.imageView1);
         FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+        if (launch_questionnaire == null) {
+            Log.e("Profile_Fragment", "launch_questionnaire is null");
+        }
         infobtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,11 +49,11 @@ public class Profile_Fragment extends Fragment  {
         launch_questionnaire.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fragmentManager
-                        .beginTransaction()
-                        .replace(R.id.flFragment, questionnaireFragment)
-                        .addToBackStack(null)  // Optional: Add to back stack for fragment navigation
-                        .commit();
+                Questionnaire_Fragment questionnaireFragment = Questionnaire_Fragment.newInstance(0);
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.flFragment, questionnaireFragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
             }
         });
 

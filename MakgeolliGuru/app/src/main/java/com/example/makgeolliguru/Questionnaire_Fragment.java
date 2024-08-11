@@ -15,9 +15,22 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 public class Questionnaire_Fragment extends Fragment {
 
+    public Questionnaire_Fragment() {
+        // Required empty public constructor
+    }
+
+    public static Questionnaire_Fragment newInstance(int questionId) {
+        Questionnaire_Fragment fragment = new Questionnaire_Fragment();
+        Bundle args = new Bundle();
+        args.putInt("QUESTION_ID", questionId);
+        fragment.setArguments(args);
+        return fragment;
+    }
     private TextView questionTextView;
     private RadioGroup optionsRadioGroup;
     private Button nextButton;
@@ -43,12 +56,25 @@ public class Questionnaire_Fragment extends Fragment {
     };
 
     private char[] userAnswers = new char[questions.length];
-    private int currentQuestionIndex = 0;
+
+    // Retrieve the ID passed through the arguments
+
+    private int questionId = -1;
+    public int getIdQuestion(){
+        Bundle args = getArguments();
+        if (args != null) {
+            return args.getInt("QUESTION_ID", -1);
+        }
+        return -1;
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_questionnaire, container, false);
+
+        questionId = getIdQuestion();
 
         questionTextView = view.findViewById(R.id.questionTextView);
         optionsRadioGroup = view.findViewById(R.id.optionsRadioGroup);
@@ -66,14 +92,20 @@ public class Questionnaire_Fragment extends Fragment {
                 if (checkedRadioButtonId != -1) {
                     RadioButton radioButton = view.findViewById(checkedRadioButtonId);
                     int selectedOptionIndex = optionsRadioGroup.indexOfChild(view.findViewById(checkedRadioButtonId));
-                    userAnswers[currentQuestionIndex] = (char) ('A' + selectedOptionIndex);
-                    questionnaire.recordAnswer(userAnswers[currentQuestionIndex]);
+                    userAnswers[questionId] = (char) ('A' + selectedOptionIndex);
+                    questionnaire.recordAnswer(userAnswers[questionId]);
                 }
 
                 // Move to the next question or show results if all questions are answered
-                if (currentQuestionIndex < questions.length - 1) {
-                    currentQuestionIndex++;
-                    displayQuestion();
+                if (questionId < questions.length - 1) {
+                    questionId++;
+                    //todo : increment la page
+                    Questionnaire_Fragment questionnaireFragment = Questionnaire_Fragment.newInstance(questionId);
+                    FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.flFragment, questionnaireFragment);
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
                 } else {
                     // All questions answered, show results
                     showResults(view);
@@ -84,14 +116,19 @@ public class Questionnaire_Fragment extends Fragment {
     }
 
     private void displayQuestion() {
-        questionTextView.setText(questions[currentQuestionIndex]);
-        optionsRadioGroup.clearCheck();
+        if (questionId >= 0 && questionId < questions.length) {
+            questionTextView.setText(questions[questionId]);
 
-        String[] currentOptions = options[currentQuestionIndex];
-        for (int i = 0; i < currentOptions.length; i++) {
-            RadioButton radioButton = (RadioButton) optionsRadioGroup.getChildAt(i);
-            radioButton.setText(currentOptions[i]);
+            optionsRadioGroup.clearCheck();
+            optionsRadioGroup.removeAllViews();
+            String[] currentOptions = options[questionId];
+            for (String option : currentOptions) {
+                RadioButton radioButton = new RadioButton(getContext());
+                radioButton.setText(option);
+                optionsRadioGroup.addView(radioButton);
+            }
         }
+
     }
 
     private void showResults(View view) {
