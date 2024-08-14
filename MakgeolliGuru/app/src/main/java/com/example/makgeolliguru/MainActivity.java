@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
@@ -125,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     // Bottom navigation behavior
     BottomNavigationView bottomNavigationView;
-    Map_Fragment mapFragment = new Map_Fragment();
+    MapFragment mapFragment = new MapFragment();
     Learning_Fragment learningFragment = new Learning_Fragment();
     Profile_Fragment profileFragment = new Profile_Fragment();
     @Override
