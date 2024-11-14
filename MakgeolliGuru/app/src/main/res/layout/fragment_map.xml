@@ -34,18 +34,18 @@
                 android:layout_height="wrap_content"
                 android:text="@string/makgeolli_map"
                 android:textColor="@color/white"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
+
         </LinearLayout>
+
         <!-- TODO: Update blank fragment layout -->
         <fragment xmlns:map="http://schemas.android.com/apk/res-auto"
             android:id="@+id/map"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            map:cameraZoom="6"
-            map:liteMode="false"
-            map:mapType="normal"
-            tools:layout="@layout/fragment_map_" />
+            tools:context="com.example.makgeolliguru.MainActivity"
+            map:cameraZoom="6" />
 
     </LinearLayout>
 
@@ -54,8 +54,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-
-        android:layout_weight="1"
         android:layout_x="10dp"
         android:layout_y="50dp"
         app:chipSpacingVertical="0dp">
@@ -127,7 +125,6 @@
             android:text="@string/filter"
             android:textAlignment="center" />
     </com.google.android.material.chip.ChipGroup>
-
 
     <ImageButton
         android:id="@+id/updatebtn"

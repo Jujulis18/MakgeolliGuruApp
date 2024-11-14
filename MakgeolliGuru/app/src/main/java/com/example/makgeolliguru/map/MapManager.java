@@ -1,67 +1,60 @@
-package com.example.makgeolliguru;
+package com.example.makgeolliguru.map;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
-import android.view.View;
+import android.view.ViewGroup;
 
+import com.example.makgeolliguru.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class MapManager {
 
-    private Context context;
-    private GoogleMap myMap;
-    private ArrayList<Marker> mMarkerArray = new ArrayList<>();
+    private final ArrayList<Marker> mMarkerArray = new ArrayList<>();
+    private ViewGroup container;
 
-    public void initializeMap( GoogleMap googleMap, Context context, String[][] makgeolliListTab) {
-        this.context = context;
-        /*supportMapFragment.getMapAsync(new OnMapReadyCallback() {
-            @Override
-            public void onMapReady(GoogleMap googleMap) {*/
-                this.myMap = googleMap;
-                LatLng SouthKorea = new LatLng(37.566535, 126.9779692);
-                myMap.moveCamera(CameraUpdateFactory.newLatLng(SouthKorea));
-                myMap.getUiSettings().setZoomControlsEnabled(true);
-                myMap.getUiSettings().setMapToolbarEnabled(false);
-                myMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(context));
+    public void initializeMap(GoogleMap googleMap, ViewGroup container, String[][] makgeolliListTab) {
+        this.container = container;
+        LatLng SouthKoreaPos = new LatLng(37.566535, 126.9779692);
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(SouthKoreaPos));
+        googleMap.getUiSettings().setZoomControlsEnabled(true);
+        googleMap.getUiSettings().setMapToolbarEnabled(false);
+        googleMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(this.container.getContext()));
 
-                addMarkers(makgeolliListTab);
-           /* }
-
-        });*/
+        addMarkers(Arrays.asList(makgeolliListTab), googleMap);
     }
 
-    private void addMarkers(String[][] makgeolliListTab) {
+    private void addMarkers(List<String[]> makgeolliListTab, GoogleMap googleMap) {
         for (String[] info : makgeolliListTab) {
             if (info[0] != null) {
                 try {
-                    double lat = Double.parseDouble(info[7]);
-                    double lng = Double.parseDouble(info[6]);
+                    double lat = Double.parseDouble(info[6]);
+                    double lng = Double.parseDouble(info[7]);
 
                     LatLng latLng = new LatLng(lat, lng);
                     String snippet = String.format("%s %s %s %s", info[1], info[2], info[3], info[4]);
-                    Bitmap smallMarker = getMarkerBitmap(info);
+                    Bitmap smallMarker = getMarkerBitmap(Arrays.asList(info));
 
                     MarkerOptions markerOptions = new MarkerOptions()
-                                .position(latLng)
-                                .title(info[0])
-                                .snippet(snippet)
-                                .icon(BitmapDescriptorFactory.fromBitmap(smallMarker));
+                            .position(latLng)
+                            .title(info[0])
+                            .snippet(snippet)
+                            .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
+                            .visible(true);
 
-                    Marker newMarker = myMap.addMarker(markerOptions);
+                    Marker newMarker = googleMap.addMarker(markerOptions);
 
                     if (newMarker != null) {
                         mMarkerArray.add(newMarker);
@@ -80,37 +73,35 @@ public class MapManager {
         }
     }
 
-    private Bitmap getMarkerBitmap(String[] info) {
+    private Bitmap getMarkerBitmap(List<String> info) {
         int height = 100;
         int width = 100;
-        Bitmap b=null;
+        Bitmap b = null;
         try {
-            int resourceId=-1;
-            if (info[12].contains("Yes")) {
+            int resourceId;
+            if (info.get(12).contains("Yes")) {
                 resourceId = R.drawable.marker_pink;
-            } else if (info[13].contains("Yes")) {
+            } else if (info.get(13).contains("Yes")) {
                 resourceId = R.drawable.marker_orange;
-            } else if (Integer.parseInt(info[4]) >= 3) {
+            } else if (Integer.parseInt(info.get(4)) >= 3) {
                 resourceId = R.drawable.marker_green;
             } else {
                 resourceId = R.drawable.marker;
             }
-            b = BitmapFactory.decodeResource(this.context.getResources(), resourceId);
+            b = BitmapFactory.decodeResource(this.container.getResources(), resourceId);
 
             if (b != null) {
                 b = Bitmap.createScaledBitmap(b, width, height, false);
             } else {
-                Log.e("MapManager", "Failed to decode resource for: " + info[0]);
+                Log.e("MapManager", "Failed to decode resource for: " + info.get(0));
             }
         } catch (Exception e) {
-            Log.e("MapManager", "Error loading bitmap for: " + info[0], e);
+            Log.e("MapManager", "Error loading bitmap for: " + info.get(0), e);
         }
         return b;
     }
 
-
-
-    public void filterMarkers(ChipGroup chipGroup, String[][] makgeolliListTab, String[][] favoriteTab) {
+    public void filterMarkers(ChipGroup chipGroup, String[][] makgeolliListTab, String[][] favoriteTabs) {
         mMarkerArray.forEach(marker -> marker.setVisible(true));
         boolean isSweet = ((Chip) chipGroup.findViewById(R.id.chipSweet)).isChecked();
         boolean isSour = ((Chip) chipGroup.findViewById(R.id.chipSour)).isChecked();
@@ -122,12 +113,12 @@ public class MapManager {
         for (Marker marker : mMarkerArray) {
             if (isFavorite) {
 
-                Log.w("MakgeolliGuru", String.format("%d", favoriteTab.length));
+                Log.w("MakgeolliGuru", String.format("%d", favoriteTabs.length));
                 boolean visible = false;
-                for (int i = 0; i < favoriteTab.length; i++) {
-                    Log.w("MakgeolliGuru", String.format("favoriteTab: %s", favoriteTab[i][0]));
+                for (String[] tab : favoriteTabs) {
+                    Log.w("MakgeolliGuru", String.format("favoriteTab: %s", tab[0]));
                     Log.w("MakgeolliGuru", String.format("completeList: %s", makgeolliListTab[Integer.parseInt(marker.getId().substring(1))][0]));
-                    if (!visible && !favoriteTab[i][0].contains(makgeolliListTab[Integer.parseInt(marker.getId().substring(1))][0])) {
+                    if (!visible && !tab[0].contains(makgeolliListTab[Integer.parseInt(marker.getId().substring(1))][0])) {
                         marker.setVisible(false);
                     } else {
                         Log.w("MakgeolliGuru", "visible");
@@ -161,8 +152,6 @@ public class MapManager {
                     marker.setVisible(false);
                 }
             }
-
-
         }
     }
 }

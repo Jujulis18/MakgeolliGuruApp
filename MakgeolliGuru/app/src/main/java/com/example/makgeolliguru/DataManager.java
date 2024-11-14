@@ -9,6 +9,8 @@ import static com.example.makgeolliguru.MainActivity.SHARED_PREF;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.makgeolliguru.map.MakgeolliList;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;

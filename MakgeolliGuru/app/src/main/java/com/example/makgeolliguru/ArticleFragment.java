@@ -11,17 +11,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-public class Article_Fragment extends Fragment {
+import com.example.makgeolliguru.map.MakgeolliList;
 
-    public Article_Fragment() {
+public class ArticleFragment extends Fragment {
+
+    public ArticleFragment() {
         // Required empty public constructor
     }
 
-    public static Article_Fragment newInstance(int itemId) {
-        Article_Fragment fragment = new Article_Fragment();
+    public static ArticleFragment newInstance(int itemId) {
+        ArticleFragment fragment = new ArticleFragment();
         Bundle args = new Bundle();
         args.putInt("ITEM_ID", itemId);
         fragment.setArguments(args);

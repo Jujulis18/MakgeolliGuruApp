@@ -1,7 +1,5 @@
 package com.example.makgeolliguru;
 
-import com.example.makgeolliguru.QuestionnaireRules;
-
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,19 +11,18 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-public class Questionnaire_Fragment extends Fragment {
+public class QuestionnaireFragment extends Fragment {
 
-    public Questionnaire_Fragment() {
+    public QuestionnaireFragment() {
         // Required empty public constructor
     }
 
-    public static Questionnaire_Fragment newInstance(int questionId) {
-        Questionnaire_Fragment fragment = new Questionnaire_Fragment();
+    public static QuestionnaireFragment newInstance(int questionId) {
+        QuestionnaireFragment fragment = new QuestionnaireFragment();
         Bundle args = new Bundle();
         args.putInt("QUESTION_ID", questionId);
         fragment.setArguments(args);
@@ -100,7 +97,7 @@ public class Questionnaire_Fragment extends Fragment {
                 if (questionId < questions.length - 1) {
                     questionId++;
                     //todo : increment la page
-                    Questionnaire_Fragment questionnaireFragment = Questionnaire_Fragment.newInstance(questionId);
+                    QuestionnaireFragment questionnaireFragment = QuestionnaireFragment.newInstance(questionId);
                     FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     fragmentTransaction.replace(R.id.flFragment, questionnaireFragment);
