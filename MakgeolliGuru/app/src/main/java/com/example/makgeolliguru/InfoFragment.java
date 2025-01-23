@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.example.makgeolliguru.profile.ProfileFragment;
+
 public class InfoFragment extends Fragment {
 
     public InfoFragment(){

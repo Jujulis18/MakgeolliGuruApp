@@ -1,4 +1,4 @@
-package com.example.makgeolliguru;
+package com.example.makgeolliguru.articles;
 
 import static android.content.Context.MODE_PRIVATE;
 import static com.example.makgeolliguru.MainActivity.ARTICLE_LIST;
@@ -20,12 +20,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.makgeolliguru.R;
+import com.example.makgeolliguru.articles.ArticleFragment;
 import com.example.makgeolliguru.map.MakgeolliList;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 import java.util.stream.Collectors;
 
 
@@ -33,7 +36,7 @@ public class LearningFragment extends Fragment  {
     public LearningFragment(){
         // require a empty public constructor
     }
-    static String[][] articleListTab;
+    static List<String[]> articleListTab;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_learning, container, false);
@@ -51,8 +54,8 @@ public class LearningFragment extends Fragment  {
         LinearLayout dynamicContent = view.findViewById(R.id.dynamic_content);
 
         CardView cardView = null;
-        for (int id = 0; id < articleListTab.length; id++) {
-            String title = articleListTab[id][1]; // Assuming articleListTab is your data array
+        for (int id = 0; id < articleListTab.size(); id++) {
+            String title = articleListTab.get(id)[1]; // Assuming articleListTab is your data array
 
             // Create a new CardView
             cardView = (CardView) inflater.inflate(R.layout.cardview_layout, dynamicContent, false);

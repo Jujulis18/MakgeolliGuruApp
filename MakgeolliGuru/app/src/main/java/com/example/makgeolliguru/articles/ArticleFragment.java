@@ -1,4 +1,4 @@
-package com.example.makgeolliguru;
+package com.example.makgeolliguru.articles;
 
 import static android.content.Context.MODE_PRIVATE;
 import static com.example.makgeolliguru.MainActivity.ARTICLE_LIST;
@@ -13,7 +13,10 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.makgeolliguru.R;
 import com.example.makgeolliguru.map.MakgeolliList;
+
+import java.util.List;
 
 public class ArticleFragment extends Fragment {
 
@@ -41,13 +44,13 @@ public class ArticleFragment extends Fragment {
             itemId = args.getInt("ITEM_ID", -1);
         }
 
-        String[][] articleListTab;
+        List<String[]> articleListTab;
         SharedPreferences prefs = getContext().getSharedPreferences(SHARED_PREF, MODE_PRIVATE);
         String articleListString = prefs.getString(ARTICLE_LIST, null);
         articleListTab = new MakgeolliList(articleListString).ReadFileInto2DArray();
 
         //if (itemId != -1 && articleListTab != null && itemId < articleListTab.length) {
-            String[] articleData = articleListTab[itemId];
+            String[] articleData = articleListTab.get(itemId);
 
             // Display the ID or use it to load data
             TextView textView = view.findViewById(R.id.titleTextView);

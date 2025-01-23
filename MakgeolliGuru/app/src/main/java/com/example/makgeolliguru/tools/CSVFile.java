@@ -1,4 +1,4 @@
-package com.example.makgeolliguru;
+package com.example.makgeolliguru.tools;
 
 import java.io.BufferedReader;
 import java.io.IOException;

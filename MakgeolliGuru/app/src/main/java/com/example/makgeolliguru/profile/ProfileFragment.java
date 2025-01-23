@@ -1,4 +1,4 @@
-package com.example.makgeolliguru;
+package com.example.makgeolliguru.profile;
 
 import android.os.Bundle;
 
@@ -12,6 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+
+import com.example.makgeolliguru.InfoFragment;
+import com.example.makgeolliguru.R;
 
 
 public class ProfileFragment extends Fragment  {

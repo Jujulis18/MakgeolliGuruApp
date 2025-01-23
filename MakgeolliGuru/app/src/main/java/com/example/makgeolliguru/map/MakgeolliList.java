@@ -11,7 +11,7 @@ public class MakgeolliList {
         this.makgeolliListString = listString;
     }
 
-    public String[][] ReadFileInto2DArray() {
+    public List<String[]> ReadFileInto2DArray() {
         String delimiter = ",";
         String[][] arrayToReturn;
         try {
@@ -42,7 +42,7 @@ public class MakgeolliList {
             return null;
         }
 
-        return arrayToReturn;
+        return Arrays.asList(arrayToReturn);
     }
 
     public String addDataOnString(String[] newMakgeolli) {
