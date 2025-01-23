@@ -11,9 +11,11 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-public class Info_Fragment extends Fragment {
+import com.example.makgeolliguru.profile.ProfileFragment;
 
-    public Info_Fragment(){
+public class InfoFragment extends Fragment {
+
+    public InfoFragment(){
         // require a empty public constructor
     }
 
@@ -37,7 +39,7 @@ public class Info_Fragment extends Fragment {
             public void onClick(View v) {
                 fragmentManager
                         .beginTransaction()
-                        .replace(R.id.flFragment, new Profile_Fragment())
+                        .replace(R.id.flFragment, new ProfileFragment())
                         .addToBackStack(null)  // Optional: Add to back stack for fragment navigation
                         .commit();
             }

@@ -1,12 +1,9 @@
-package com.example.makgeolliguru;
+package com.example.makgeolliguru.articles;
 
 import static android.content.Context.MODE_PRIVATE;
 import static com.example.makgeolliguru.MainActivity.ARTICLE_LIST;
-import static com.example.makgeolliguru.MainActivity.FAVORITE_LIST;
-import static com.example.makgeolliguru.MainActivity.MAK_LIST;
 import static com.example.makgeolliguru.MainActivity.SHARED_PREF;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -16,30 +13,33 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.makgeolliguru.R;
+import com.example.makgeolliguru.articles.ArticleFragment;
+import com.example.makgeolliguru.map.MakgeolliList;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 import java.util.stream.Collectors;
 
 
-public class Learning_Fragment extends Fragment  {
-    public Learning_Fragment(){
+public class LearningFragment extends Fragment  {
+    public LearningFragment(){
         // require a empty public constructor
     }
-    static String[][] articleListTab;
+    static List<String[]> articleListTab;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_learning_, container, false);
+        View view = inflater.inflate(R.layout.fragment_learning, container, false);
 
         SharedPreferences prefs = getContext().getSharedPreferences(SHARED_PREF, MODE_PRIVATE);
         String articleListString = prefs.getString(ARTICLE_LIST, null);
@@ -54,8 +54,8 @@ public class Learning_Fragment extends Fragment  {
         LinearLayout dynamicContent = view.findViewById(R.id.dynamic_content);
 
         CardView cardView = null;
-        for (int id = 0; id < articleListTab.length; id++) {
-            String title = articleListTab[id][1]; // Assuming articleListTab is your data array
+        for (int id = 0; id < articleListTab.size(); id++) {
+            String title = articleListTab.get(id)[1]; // Assuming articleListTab is your data array
 
             // Create a new CardView
             cardView = (CardView) inflater.inflate(R.layout.cardview_layout, dynamicContent, false);
@@ -71,7 +71,7 @@ public class Learning_Fragment extends Fragment  {
                 public void onClick(View v) {
                     // Action à exécuter lorsque la CardView est cliquée
                     Toast.makeText(getActivity(), "CardView cliquée!", Toast.LENGTH_SHORT).show();
-                    Article_Fragment articleFragment = Article_Fragment.newInstance(currentId);
+                    ArticleFragment articleFragment = ArticleFragment.newInstance(currentId);
                     FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     fragmentTransaction.replace(R.id.flFragment, articleFragment);
@@ -90,7 +90,7 @@ public class Learning_Fragment extends Fragment  {
             public void onClick(View v) {
                 fragmentManager
                         .beginTransaction()
-                        .replace(R.id.flFragment, new Learning_Fragment())
+                        .replace(R.id.flFragment, new LearningFragment())
                         .addToBackStack(null)  // Optional: Add to back stack for fragment navigation
                         .commit();
             }

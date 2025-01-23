@@ -1,4 +1,4 @@
-package com.example.makgeolliguru;
+package com.example.makgeolliguru.tools;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -9,10 +9,14 @@ import static com.example.makgeolliguru.MainActivity.SHARED_PREF;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.makgeolliguru.R;
+import com.example.makgeolliguru.map.MakgeolliList;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
@@ -25,7 +29,7 @@ public class DataManager {
         this.prefs = context.getSharedPreferences(SHARED_PREF, MODE_PRIVATE);
     }
 
-    public String[][] loadMakgeolliList() {
+    public List<String[]> loadMakgeolliList() {
         String makgeolliListString = prefs.getString(MAK_LIST, null);
         if (makgeolliListString == null) {
             makgeolliListString = loadDefaultData();
@@ -33,7 +37,7 @@ public class DataManager {
         return new MakgeolliList(makgeolliListString).ReadFileInto2DArray();
     }
 
-    public String[][] loadFavoriteList() {
+    public List<String[]> loadFavoriteList() {
         String favoriteListString = prefs.getString(FAVORITE_LIST, null);
         return favoriteListString != null ? new MakgeolliList(favoriteListString).ReadFileInto2DArray() : null;
     }

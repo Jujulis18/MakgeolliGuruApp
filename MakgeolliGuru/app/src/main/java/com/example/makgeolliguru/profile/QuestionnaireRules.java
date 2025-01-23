@@ -1,4 +1,4 @@
-package com.example.makgeolliguru;
+package com.example.makgeolliguru.profile;
 import java.util.HashMap;
 import java.util.Map;
 

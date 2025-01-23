@@ -1,4 +1,4 @@
-package com.example.makgeolliguru;
+package com.example.makgeolliguru.tools;
 
 import static android.content.Context.MODE_PRIVATE;
 import static com.example.makgeolliguru.MainActivity.MAK_LIST;
