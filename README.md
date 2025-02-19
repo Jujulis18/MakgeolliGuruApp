@@ -58,6 +58,4 @@ Once the app is installed, you can start exploring the different features:
 ## Troubleshooting
 
 If you run into issues, here are some solutions:
-
-- **Installation errors**: Make sure you have the latest version of Android Studio and your device is correctly configured.
-- **Display issues**: If the app is not displaying correctly, try restarting your device or checking for available updates.
+**Display issues**: If the app is not displaying correctly, try restarting your device or checking for available updates.
