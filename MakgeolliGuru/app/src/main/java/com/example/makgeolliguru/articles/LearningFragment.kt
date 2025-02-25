@@ -46,7 +46,7 @@ class LearningFragment : Fragment() {
         val articleListTab = MakgeolliList(articleListString)?.ReadFileInto2DArray()
 
         val articles = articleListTab?.map { article ->
-            Article(article[1], R.drawable.logo) } ?:
+            Article(article[1], imageUrl=article[5]) } ?:
             emptyList()
 
         val adapter = ArticlesAdapter(articles, requireActivity().supportFragmentManager)

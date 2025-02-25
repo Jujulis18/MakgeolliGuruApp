@@ -55,6 +55,18 @@ public class MapFragment extends Fragment {
     }
 
     private void setupListeners(View view, ViewGroup container, LayoutInflater inflater) {
+
+
+        view.findViewById(R.id.btnFilter).setOnClickListener (v -> {
+            View actionContainer = view.findViewById(R.id.filter_container);
+            // Vérifier la visibilité et inverser l'état
+            if (actionContainer.getVisibility() == View.GONE) {
+                actionContainer.setVisibility(View.VISIBLE);
+            } else {
+                actionContainer.setVisibility(View.GONE);
+            }
+        });
+
         // Update data
         view.findViewById(R.id.updatebtn).setOnClickListener(v -> {
             try {

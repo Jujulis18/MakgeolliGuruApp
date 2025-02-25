@@ -1,73 +1,38 @@
 package com.example.makgeolliguru.tools;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
+import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvException;
 import java.io.InputStreamReader;
-import java.io.Reader;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.io.FileReader;
-import java.util.stream.Collectors;
+import java.io.InputStream;
+import java.util.ArrayList;
 
 public class CSVFile {
     InputStream inputStream;
 
-    public CSVFile(InputStream inputStream){
+    public CSVFile(InputStream inputStream) {
         this.inputStream = inputStream;
     }
 
-    /*public String[][] read(file){
-        String[][] resultList = ReadFileInto2DArray(file);
-        return resultList;
-    }*/
+    public String[][] ReadFileInto2DArray() {
+        List<String[]> records = new ArrayList<>();
 
-    public  String[][] ReadFileInto2DArray() {
-        List<String> recordList = new ArrayList<String>();
-
-        String delimiter = ",";
-        String currentLine;
-
-        String[][] arrayToReturn;
-        try {
-            //FileReader fr = new FileReader(filepath);
-            //BufferedReader br = new BufferedReader(fr);
-            String text = new BufferedReader(
-                    new InputStreamReader(inputStream, StandardCharsets.UTF_8))
-                    .lines()
-                    .collect(Collectors.joining("\n"));
-
-
-            recordList = Arrays.asList(text.split("\n", -1));
-            /*for(String line : lineList){
-                recordList.addAll(Arrays.asList(line.split(",", -1)));
-            }*/
-
-            int recordCount = recordList.size();
-
-            String[] firstLine = recordList.get(0).split(delimiter);
-
-            int amountOfField = firstLine.length;
-
-            arrayToReturn = new String[recordCount-1][amountOfField];
-            String[] data;
-
-            for (int i = 1; i < recordCount; i++) {
-
-                data = recordList.get(i).replace(",,",",N/A,").split(delimiter);
-                if(data.length==amountOfField) {
-                    for (int j = 0; j < data.length; j++) {
-                        arrayToReturn[i - 1][j] = data[j];
-                        //System.out.println(String.join(",",arrayToReturn[i][j]));
-                    }
-                }
-            }
-
+        try (CSVReader csvReader = new CSVReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
+            records = csvReader.readAll();
         } catch (Exception e) {
-            System.out.print(e);
+            e.printStackTrace();
             return null;
+        }
+
+        if (records.isEmpty()) {
+            return new String[0][0];  // Return an empty array if no data
+        }
+
+        String[][] arrayToReturn = new String[records.size()][records.get(0).length];
+
+        for (int i = 0; i < records.size(); i++) {
+            arrayToReturn[i] = records.get(i);
         }
 
         return arrayToReturn;

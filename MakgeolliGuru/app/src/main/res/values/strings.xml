@@ -30,7 +30,6 @@
     <string name="test_knowledge_link">Test your knowledge</string>
     <string name="test_personality_link">Get your Makgeolli profile</string>
     <string name="profile_part1">Your are :</string>
-    <string name="profile_name_sour">Sour Makgeolli</string>
     <string name="profile_character">Your character :</string>
     <string name="profile_description_sour">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut dictum rutrum augue in venenatis. Praesent nec rhoncus nisi</string>
 
@@ -39,5 +38,13 @@
     <string name="ingredients">Ingredients:</string>
     <string name="localisation">Localisation:</string>
     <string name="more_infos">More information:</string>
+    <string name="favorite_link">favorite</string>
+    <string name="sparkling_profile">\"Mostly A\'s: You might enjoy a makgeolli that fits well with outdoor activities, perhaps a sparkling and refreshing option.\";</string>
+    <string name="fruity_profile">\"Mostly B\'s: A smooth and contemplative makgeolli with fruity or sour notes could be your ideal choice.\";</string>
+    <string name="sweet_profile">\"Mostly C\'s: A lively and sociable makgeolli with sweet and light-hearted characteristics may suit your taste.\";</string>
+    <string name="other_profile">\"Your preferences are diverse. You may enjoy exploring different types of makgeolli.\";</string>
+    <string name="sparkling_name">Sparkling Makgeolli</string>
+    <string name="fruity_name">Fruity Makgeolli</string>
+    <string name="sweet_name">Sweet Makgeolli</string>
 
 </resources>

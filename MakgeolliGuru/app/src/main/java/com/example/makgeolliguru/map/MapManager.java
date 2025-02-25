@@ -5,17 +5,22 @@ import static com.example.makgeolliguru.MainActivity.FAVORITE_LIST;
 import static com.example.makgeolliguru.MainActivity.SHARED_PREF;
 import static com.example.makgeolliguru.map.MapFragment.getCurrentLanguage;
 
+import android.app.AlertDialog;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.makgeolliguru.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -27,6 +32,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 
+import java.io.File;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -156,6 +162,22 @@ public class MapManager {
 
 // TODO: if makgeolli on FavoriteTab = setSelected()
 
+        ImageView imageView = (ImageView) bottomSheetView.findViewById(R.id.bottleImg);
+        String imagePath = null;
+        try {
+             imagePath = makgeolliListTab.get(Integer.parseInt(idSelected))[18];
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        Glide.with(imageView.getContext())
+                .load(imagePath)
+                .placeholder(R.drawable.marker) // Image affichée pendant le chargement
+                .error(R.drawable.marker) // Image affichée si une erreur survient
+                .into(imageView);
+
+
+
         TextView makgeolliName = (TextView) bottomSheetView.findViewById(R.id.makgeolliName);
         // To show rating on RatingBar
         makgeolliName.setText(makgeolliListTab.get(Integer.parseInt(idSelected))[0]);
@@ -255,7 +277,10 @@ public class MapManager {
     }
 
 
+
     public void filterMarkers(ChipGroup chipGroup, List<String[]> makgeolliListTab, List<String[]> favoriteTabs) {
+
+
         mMarkerArray.forEach(marker -> marker.setVisible(true));
         boolean isSweet = ((Chip) chipGroup.findViewById(R.id.chipSweet)).isChecked();
         boolean isSour = ((Chip) chipGroup.findViewById(R.id.chipSour)).isChecked();
@@ -264,8 +289,23 @@ public class MapManager {
         boolean isFruity = ((Chip) chipGroup.findViewById(R.id.chipFruity)).isChecked();
         boolean isFavorite = ((Chip) chipGroup.findViewById(R.id.favorite)).isChecked();
 
+        EditText searchBar = (EditText) container.findViewById(R.id.search_bar);
+        String searchQuery = searchBar.getText().toString().trim();
+
+        int visibleCount = 0;
+
         for (Marker marker : mMarkerArray) {
+            if (!marker.getTitle().toLowerCase().contains(searchQuery.toLowerCase())) {
+                marker.setVisible(false);
+                continue;
+            }
+
             if (isFavorite) {
+                if (makgeolliListTab == null || favoriteTabs == null) {
+                    Log.e("MapManager", "Erreur : makgeolliListTab ou favoriteTabs est null");
+                    new AlertDialog.Builder(container.getContext()).setTitle("Erreur").setMessage("Erreur : pas de favoris disponible").show();
+                    return;
+                }
 
                 Log.w("MakgeolliGuru", String.format("%d", favoriteTabs.size()));
                 boolean visible = false;
@@ -306,7 +346,22 @@ public class MapManager {
                     marker.setVisible(false);
                 }
             }
+
+            if (marker.isVisible()) {
+                visibleCount++; // Incrémentation si visible
+            }
         }
+        if (visibleCount == 0) {
+            mMarkerArray.forEach(marker -> marker.setVisible(true));
+            showNoResultsDialog();
+        }
+    }
+    private void showNoResultsDialog() {
+        new AlertDialog.Builder(container.getContext())
+                .setTitle("Aucun résultat")
+                .setMessage("Aucun makgeolli ne correspond à votre recherche.")
+                .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
+                .show();
     }
 }
 

@@ -1,6 +1,12 @@
 package com.example.makgeolliguru.profile;
 
+import static android.content.Context.MODE_PRIVATE;
+import static com.example.makgeolliguru.MainActivity.FAVORITE_LIST;
+import static com.example.makgeolliguru.MainActivity.MAK_PROFILE;
+import static com.example.makgeolliguru.MainActivity.SHARED_PREF;
+
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -132,7 +138,7 @@ public class QuestionnaireFragment extends Fragment {
 
     private void showResults(View view) {
         // Calculate makgeolli category based on user's answers
-        String makgeolliCategory = questionnaire.calculateMakgeolliCategory();
+        String makgeolliCategory = questionnaire.calculateMakgeolliCategory(getContext());
 
         // Display the result in a pop-up dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
@@ -142,6 +148,21 @@ public class QuestionnaireFragment extends Fragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // Do something when OK button is clicked, if needed
+                SharedPreferences prefs = view.getContext().getSharedPreferences(SHARED_PREF, MODE_PRIVATE);
+                String mak_profile = prefs.getString(MAK_PROFILE, null);
+                if (makgeolliCategory == getContext().getString(R.string.sparkling_profile)){
+                    mak_profile = "Sparkling";
+                }
+                else if (makgeolliCategory== getContext().getString(R.string.fruity_profile)){
+                    mak_profile = "Fruity";
+                }
+                else if (makgeolliCategory== getContext().getString(R.string.sweet_profile)){
+                    mak_profile = "Sweet";
+                }
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putString(MAK_PROFILE, mak_profile);
+                editor.apply();
+
             }
         });
         AlertDialog dialog = builder.create();

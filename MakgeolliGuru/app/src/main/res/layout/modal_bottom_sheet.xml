@@ -211,7 +211,8 @@ android:id="@+id/folder"
         android:layout_margin="15dp"
         android:padding="5dp"
         android:contentDescription="@string/app_name"
-        android:src="@drawable/marker"/>
+        android:src="@drawable/marker"
+        android:id="@+id/bottleImg"/>
 
 </LinearLayout>
 <LinearLayout

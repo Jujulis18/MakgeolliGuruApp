@@ -36,8 +36,8 @@
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
-        </LinearLayout>
 
+        </LinearLayout>
         <!-- TODO: Update blank fragment layout -->
         <fragment xmlns:map="http://schemas.android.com/apk/res-auto"
             android:id="@+id/map"
@@ -47,76 +47,107 @@
             tools:context="com.example.makgeolliguru.MainActivity"
             map:cameraZoom="6" />
 
+
     </LinearLayout>
-
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/filter"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/filter_container"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_x="10dp"
-        android:layout_y="50dp"
-        app:chipSpacingVertical="0dp">
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chipFruity"
-            style="@style/ThinnerChip"
-            android:layout_width="60dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginStart="70dp"
+        android:orientation="vertical"
+        android:visibility="gone">
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:checkable="true"
-            android:padding="0dp"
-            android:text="@string/fruity"
-            android:textAlignment="center"
-            app:chipStartPadding="10dp" />
+            android:layout_margin="3dp"
+            >
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chipSour"
-            style="@style/ThinnerChip"
-            android:layout_width="70dp"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/search_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                android:background="@android:color/darker_gray"
+                android:drawableStart="@android:drawable/ic_menu_search"
+                android:hint="search" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/filter"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checkable="true"
-            android:text="@string/acidity"
-            android:textAlignment="center" />
+            android:layout_margin="3dp"
+            app:chipSpacingVertical="0dp">
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chipSparkling"
-            style="@style/ThinnerChip"
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:checkable="true"
-            android:text="@string/sparkling"
-            android:textAlignment="center" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipFruity"
+                style="@style/ThinnerChip"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".1"
+                android:checkable="true"
+                android:padding="0dp"
+                android:text="@string/fruity"
+                android:textAlignment="center" />
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chipNuts"
-            style="@style/ThinnerChip"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:checkable="true"
-            android:text="@string/nuts"
-            android:textAlignment="center" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipSour"
+                style="@style/ThinnerChip"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".1"
+                android:checkable="true"
+                android:text="@string/acidity"
+                android:textAlignment="center" />
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chipSweet"
-            style="@style/ThinnerChip"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:checkable="true"
-            android:text="@string/sweet"
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipSparkling"
+                style="@style/ThinnerChip"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".1"
+                android:checkable="true"
+                android:text="@string/sparkling"
+                android:textAlignment="center" />
 
-            android:textAlignment="center" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipNuts"
+                style="@style/ThinnerChip"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".1"
+                android:checkable="true"
+                android:text="@string/nuts"
+                android:textAlignment="center" />
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/favorite"
-            style="@style/ThinnerChip"
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:checkable="true"
-            android:icon="@android:drawable/btn_star_big_on"
-            android:text="@string/favorite"
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipSweet"
+                style="@style/ThinnerChip"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".1"
+                android:checkable="true"
+                android:text="@string/sweet"
 
-            android:textAlignment="center" />
+                android:textAlignment="center" />
 
+            <com.google.android.material.chip.Chip
+                android:id="@+id/favorite"
+                style="@style/ThinnerChip"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".1"
+                android:checkable="true"
+                android:icon="@android:drawable/btn_star_big_on"
+                android:text="@string/favorite"
+
+                android:textAlignment="center" />
+
+
+        </com.google.android.material.chip.ChipGroup>
         <com.google.android.material.chip.Chip
             android:id="@+id/chipFilter"
             android:layout_width="70dp"
@@ -124,16 +155,53 @@
             android:backgroundTint="@color/blueLight"
             android:text="@string/filter"
             android:textAlignment="center" />
-    </com.google.android.material.chip.ChipGroup>
+    </LinearLayout>
+        <!-- Container flottant -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/floatingContainer"
+        android:layout_width="50dp"
+        android:layout_height="100dp"
+        android:layout_gravity="top|start"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="30dp"
+        android:background="@android:color/transparent"
+        android:elevation="8dp"
+        app:cardCornerRadius="16dp"
+        android:outlineAmbientShadowColor="@android:color/darker_gray">
 
-    <ImageButton
-        android:id="@+id/updatebtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginRight="50dp"
-        android:layout_marginBottom="20dp"
-        app:srcCompat="@android:drawable/ic_popup_sync" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            >
+
+            <!-- Bouton Filtre -->
+            <ImageButton
+                android:id="@+id/btnFilter"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Filtrer"
+                android:src="@android:drawable/ic_menu_sort_by_size" />
+
+            <!-- Bouton Synchronisation -->
+            <ImageButton
+                android:id="@+id/updatebtn"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Synchroniser"
+                android:src="@android:drawable/ic_popup_sync" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+
+
 
 </RelativeLayout>

@@ -1,4 +1,8 @@
 package com.example.makgeolliguru.profile;
+import android.content.Context;
+
+import com.example.makgeolliguru.R;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,21 +24,22 @@ public class QuestionnaireRules {
     }
 
     // Method to calculate the makgeolli category based on user's answers
-    public String calculateMakgeolliCategory() {
+    public String calculateMakgeolliCategory(Context context) {
         int countA = answers.get('A');
         int countB = answers.get('B');
         int countC = answers.get('C');
 
         // Determine the category based on the majority of responses
         if (countA > countB && countA > countC) {
-            return "Mostly A's: You might enjoy a makgeolli that fits well with outdoor activities, perhaps a sparkling and refreshing option.";
+            return context.getString(com.example.makgeolliguru.R.string.sparkling_profile);
+
         } else if (countB > countA && countB > countC) {
-            return "Mostly B's: A smooth and contemplative makgeolli with fruity or sour notes could be your ideal choice.";
+            return context.getString(com.example.makgeolliguru.R.string.fruity_profile);
         } else if (countC > countA && countC > countB) {
-            return "Mostly C's: A lively and sociable makgeolli with sweet and light-hearted characteristics may suit your taste.";
+            return context.getString(com.example.makgeolliguru.R.string.sweet_profile);
         } else {
             // If there is a tie, suggest trying different types
-            return "Your preferences are diverse. You may enjoy exploring different types of makgeolli.";
+            return context.getString(com.example.makgeolliguru.R.string.other_profile);
         }
     }
 }

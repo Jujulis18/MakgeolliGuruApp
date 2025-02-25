@@ -19,6 +19,12 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     public static final String MAK_LIST = "com.example.makgeolliguru.MAK_LIST";
     public static final String FAVORITE_LIST = "com.example.makgeolliguru.FAVORITE_LIST";
     public static final String ARTICLE_LIST = "com.example.makgeolliguru.ARTICLE_LIST";
+    public static final String MAK_PROFILE = "com.example.makgeolliguru.MAK_PROFILE";
+
+    public static final String LANGUAGE = "com.example.makgeolliguru.LANGUAGE";
+
+    public static final String FIRST_TIME = "com.example.makgeolliguru.FIRST_TIME";
+
 
     // Bottom navigation behavior
     BottomNavigationView bottomNavigationView;
