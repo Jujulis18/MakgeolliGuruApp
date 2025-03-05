@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -15,6 +16,7 @@ import com.bumptech.glide.Glide
 import com.example.makgeolliguru.MainActivity
 import com.example.makgeolliguru.R
 import com.example.makgeolliguru.map.MakgeolliList
+import com.example.makgeolliguru.map.MapFragment
 import com.example.makgeolliguru.tools.PCloudData
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -40,24 +42,39 @@ class ArticleFragment(var itemId: Int) : Fragment() {
         val articleData = articleListTab[itemId]
 
         // Display the ID or use it to load data
+
         val textView = view.findViewById<TextView>(R.id.titleTextView)
-        textView.text = articleData[1]
         val intro = view.findViewById<TextView>(R.id.IntroView)
-        intro.text = articleData[2]
         val textView1 = view.findViewById<TextView>(R.id.paragraphTitle1)
-        textView1.text = articleData[3]
         val textView2 = view.findViewById<TextView>(R.id.paragraphText1)
-        textView2.text = articleData[4]
         val textView3 = view.findViewById<TextView>(R.id.paragraphTitle2)
-        textView3.text = articleData[6]
         val textView4 = view.findViewById<TextView>(R.id.paragraphText2)
-        textView4.text = articleData[7]
         val textView5 = view.findViewById<TextView>(R.id.paragraphTitle3)
-        textView5.text = articleData[9]
         val textView6 = view.findViewById<TextView>(R.id.paragraphText3)
-        textView6.text = articleData[10]
         val textView7 = view.findViewById<TextView>(R.id.ConclusionView)
-        textView7.text = articleData[12]
+
+        if (MapFragment.getCurrentLanguage() == "ko") {
+            textView.text = articleData[13]
+            intro.text = articleData[14]
+            textView1.text = articleData[15]
+            textView2.text = articleData[16]
+            textView3.text = articleData[17]
+            textView4.text = articleData[18]
+            textView5.text = articleData[19]
+            textView6.text = articleData[20]
+            textView7.text = articleData[21]
+        } else {
+
+            textView.text = articleData[1]
+            intro.text = articleData[2]
+            textView1.text = articleData[3]
+            textView2.text = articleData[4]
+            textView3.text = articleData[6]
+            textView4.text = articleData[7]
+            textView5.text = articleData[9]
+            textView6.text = articleData[10]
+            textView7.text = articleData[12]
+        }
 
         val imageView1 = view.findViewById<ImageView>(R.id.imageView1)
         PCloudData.downloadAndLoadImage(imageView1.context, articleData[5], imageView1)
@@ -68,7 +85,11 @@ class ArticleFragment(var itemId: Int) : Fragment() {
         val imageView3 = view.findViewById<ImageView>(R.id.imageView3)
         PCloudData.downloadAndLoadImage(imageView3.context, articleData[11], imageView3)
 
-
+        val closeButton = view.findViewById<ImageView>(R.id.closebtn)
+        closeButton.setOnClickListener {
+            val fragmentManager = requireActivity().supportFragmentManager
+            fragmentManager.popBackStack()
+        }
 
         return view
     }

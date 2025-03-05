@@ -6,7 +6,7 @@
 
     <string name="sweet">Sweet</string>
     <string name="acidity">Acidity</string>
-    <string name="texture">Texture</string>
+    <string name="texture">Body</string>
     <string name="sparkling">Sparkling</string>
     <string name="fruity">Fruity</string>
     <string name="favorite">Favorite</string>
@@ -46,5 +46,9 @@
     <string name="sparkling_name">Sparkling Makgeolli</string>
     <string name="fruity_name">Fruity Makgeolli</string>
     <string name="sweet_name">Sweet Makgeolli</string>
+    <string name="search">search</string>
+    <string name="Error">Error</string>
+    <string name="error_favorite_list">\"You don\'t have favorite makgeolli."\</string>
+    <string name="error_makgeolli_list">"Did not match any Makgeolli"\</string>
 
 </resources>

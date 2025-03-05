@@ -14,27 +14,28 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#035460"
+            android:layout_height="56dp"
+            android:background="@color/primary"
             android:orientation="horizontal"
-            android:padding="5dp"
+            android:padding="15dp"
             tools:ignore="MissingConstraints">
 
             <ImageView
-                android:layout_width="80dp"
+                android:layout_width="40dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="left"
-                android:padding="1dp"
                 android:src="@drawable/map"
-
-                app:tint="@android:color/white" />
+                app:tint="@color/background"
+                android:layout_marginEnd="10dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/makgeolli_map"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
+                style="@style/TextStyle_Subtitle"
+                android:textSize="18sp"
+                android:textColor="@color/background"
+                android:layout_gravity="center"/>
 
 
         </LinearLayout>
@@ -49,18 +50,32 @@
 
 
     </LinearLayout>
-    <LinearLayout
+    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/filter_container"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:layout_marginStart="70dp"
+        android:backgroundTint="@color/surface"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_gravity="center"
+        app:cardCornerRadius="8dp"
+        android:visibility="gone"
+        >
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:elevation="8dp"
+        >
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="3dp"
+
             >
 
             <com.google.android.material.textfield.TextInputEditText
@@ -68,9 +83,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="3dp"
-                android:background="@android:color/darker_gray"
+                android:background="@color/surface"
                 android:drawableStart="@android:drawable/ic_menu_search"
-                android:hint="search" />
+                android:hint="@string/search" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -85,7 +100,7 @@
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipFruity"
                 style="@style/ThinnerChip"
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight=".1"
                 android:checkable="true"
@@ -96,7 +111,7 @@
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipSour"
                 style="@style/ThinnerChip"
-                android:layout_width="60dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight=".1"
                 android:checkable="true"
@@ -106,7 +121,7 @@
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipSparkling"
                 style="@style/ThinnerChip"
-                android:layout_width="70dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight=".1"
                 android:checkable="true"
@@ -116,7 +131,7 @@
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipNuts"
                 style="@style/ThinnerChip"
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight=".1"
                 android:checkable="true"
@@ -126,7 +141,7 @@
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipSweet"
                 style="@style/ThinnerChip"
-                android:layout_width="60dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight=".1"
                 android:checkable="true"
@@ -137,7 +152,7 @@
             <com.google.android.material.chip.Chip
                 android:id="@+id/favorite"
                 style="@style/ThinnerChip"
-                android:layout_width="70dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight=".1"
                 android:checkable="true"
@@ -150,12 +165,13 @@
         </com.google.android.material.chip.ChipGroup>
         <com.google.android.material.chip.Chip
             android:id="@+id/chipFilter"
-            android:layout_width="70dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/blueLight"
+            style="@style/ButtonStyle_Primary"
             android:text="@string/filter"
             android:textAlignment="center" />
     </LinearLayout>
+    </androidx.cardview.widget.CardView>
         <!-- Container flottant -->
     <androidx.cardview.widget.CardView
         android:id="@+id/floatingContainer"
@@ -168,10 +184,9 @@
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginBottom="30dp"
-        android:background="@android:color/transparent"
+        android:background="@color/background"
         android:elevation="8dp"
-        app:cardCornerRadius="16dp"
-        android:outlineAmbientShadowColor="@android:color/darker_gray">
+        app:cardCornerRadius="16dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -187,7 +202,8 @@
                 android:layout_height="48dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="Filtrer"
-                android:src="@android:drawable/ic_menu_sort_by_size" />
+                android:src="@android:drawable/ic_menu_sort_by_size"
+                app:tint="@color/tertiary" />
 
             <!-- Bouton Synchronisation -->
             <ImageButton
@@ -196,7 +212,8 @@
                 android:layout_height="48dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="Synchroniser"
-                android:src="@android:drawable/ic_popup_sync" />
+                android:src="@android:drawable/ic_popup_sync"
+                app:tint="@color/tertiary" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

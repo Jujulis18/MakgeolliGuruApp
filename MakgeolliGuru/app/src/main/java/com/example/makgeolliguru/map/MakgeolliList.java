@@ -1,10 +1,13 @@
 package com.example.makgeolliguru.map;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class MakgeolliList {
 
@@ -47,17 +50,37 @@ public class MakgeolliList {
         return records;
     }
 
-    public String addDataOnString(String[] newMakgeolli) {
-        String info = Arrays.toString(newMakgeolli).replace("[", "").replace("]", "").concat("\n");
-        this.makgeolliListString = String.format("%s %s", this.makgeolliListString, info);
+    public String addDataOnString(List<String> newMakgeolli) {
+
+        String info = newMakgeolli.toString().replace("[", "").replace("]", "").concat("");
+
+
+        this.makgeolliListString = this.makgeolliListString.trim();
+
+        if (!this.makgeolliListString.endsWith("\n")) {
+            this.makgeolliListString += "\n";
+        }
+
+        this.makgeolliListString += info;
         return this.makgeolliListString;
     }
 
     public String deleteDataFromString(String[] newMakgeolli) {
+
+        Log.d("deleteDataFromString", "newMakgeolli: " + Arrays.toString(newMakgeolli));
+        Log.d("deleteDataFromString", "makgeolliListString: " + this.makgeolliListString);
+
         String info = Arrays.toString(newMakgeolli).replace("[", "").replace("]", "").concat("\n");
 
+        Log.d("deleteDataFromString", "info: " + info);
         this.makgeolliListString = String.format("%s", this.makgeolliListString.replace(info, ""));
 
+        this.makgeolliListString = this.makgeolliListString.trim();
+        if (!this.makgeolliListString.endsWith("\n")) {
+            this.makgeolliListString += "\n";
+        }
+
+        Log.d("deleteDataFromString", "makgeolliListString: " + this.makgeolliListString);
         return this.makgeolliListString;
     }
 

@@ -7,18 +7,22 @@ import static com.example.makgeolliguru.map.MapFragment.getCurrentLanguage;
 
 import android.app.AlertDialog;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
 import com.example.makgeolliguru.R;
@@ -71,9 +75,16 @@ public class MapManager {
                     String snippet = String.format("%s %s %s %s", info[1], info[2], info[3], info[4]);
                     Bitmap smallMarker = getMarkerBitmap(Arrays.asList(info));
 
+                    String markerName;
+                    if (getCurrentLanguage().equals("ko")) {
+                        markerName = info[14];
+                    } else {
+                        markerName = info[15];
+                    }
+
                     MarkerOptions markerOptions = new MarkerOptions()
                             .position(latLng)
-                            .title(info[0])
+                            .title(markerName)
                             .snippet(snippet)
                             .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
                             .visible(true);
@@ -149,23 +160,24 @@ public class MapManager {
         // open modal bottom sheet (+learn more)
         // marker id format = "m[id]"
         // Remove the first character with substring
-        String idSelected = marker.getId().substring(1);
-        String information = String.format("Sweet: %s\n Acidity %s \nTexture %s\nSparkling %s\nFlavor/ingredients %s\nLocalisation %s\n percent alcohol %s\nArtisanal %s\n\n<h3>Comment </h3>",
-                makgeolliListTab.get(Integer.parseInt(idSelected))[1],
-                makgeolliListTab.get(Integer.parseInt(idSelected))[2],
-                makgeolliListTab.get(Integer.parseInt(idSelected))[3],
-                makgeolliListTab.get(Integer.parseInt(idSelected))[4],
-                makgeolliListTab.get(Integer.parseInt(idSelected))[5],
-                makgeolliListTab.get(Integer.parseInt(idSelected))[8],
-                makgeolliListTab.get(Integer.parseInt(idSelected))[9],
-                makgeolliListTab.get(Integer.parseInt(idSelected))[10]);
+        //var id = marker.getId();
+        int idSelected = Integer.parseInt(marker.getId().substring(1))+1;
+        /*String information = String.format("Sweet: %s\n Acidity %s \nTexture %s\nSparkling %s\nFlavor/ingredients %s\nLocalisation %s\n percent alcohol %s\nArtisanal %s\n\n<h3>Comment </h3>",
+                makgeolliListTab.get(idSelected)[1],
+                makgeolliListTab.get(idSelected)[2],
+                makgeolliListTab.get(idSelected)[3],
+                makgeolliListTab.get(idSelected)[4],
+                makgeolliListTab.get(idSelected)[5],
+                makgeolliListTab.get(idSelected)[8],
+                makgeolliListTab.get(idSelected)[9],
+                makgeolliListTab.get(idSelected)[10]);*/
 
 // TODO: if makgeolli on FavoriteTab = setSelected()
 
         ImageView imageView = (ImageView) bottomSheetView.findViewById(R.id.bottleImg);
         String imagePath = null;
         try {
-             imagePath = makgeolliListTab.get(Integer.parseInt(idSelected))[18];
+             imagePath = makgeolliListTab.get(idSelected)[19];
         }
         catch (Exception e){
             e.printStackTrace();
@@ -176,43 +188,50 @@ public class MapManager {
                 .error(R.drawable.marker) // Image affichée si une erreur survient
                 .into(imageView);
 
-
-
         TextView makgeolliName = (TextView) bottomSheetView.findViewById(R.id.makgeolliName);
-        // To show rating on RatingBar
-        makgeolliName.setText(makgeolliListTab.get(Integer.parseInt(idSelected))[0]);
+        if (getCurrentLanguage().equals("ko")) {
+            makgeolliName.setText(makgeolliListTab.get(idSelected)[14]);
+        } else {
+            makgeolliName.setText(makgeolliListTab.get(idSelected)[15]);
+        }
+
 
         RatingBar ratingBarSweet = (RatingBar) bottomSheetView.findViewById(R.id.ratingBarSweet);
-        ratingBarSweet.setRating(Float.parseFloat(makgeolliListTab.get(Integer.parseInt(idSelected))[1]));
+        ratingBarSweet.setRating(Float.parseFloat(makgeolliListTab.get(idSelected)[1]));
 
         RatingBar ratingBarAcidity = (RatingBar) bottomSheetView.findViewById(R.id.ratingBarAcidity);
-        ratingBarAcidity.setRating(Float.parseFloat(makgeolliListTab.get(Integer.parseInt(idSelected))[2]));
+        ratingBarAcidity.setRating(Float.parseFloat(makgeolliListTab.get(idSelected)[2]));
 
         RatingBar ratingBarTexture = (RatingBar) bottomSheetView.findViewById(R.id.ratingBarTexture);
-        ratingBarTexture.setRating(Float.parseFloat(makgeolliListTab.get(Integer.parseInt(idSelected))[3]));
+        ratingBarTexture.setRating(Float.parseFloat(makgeolliListTab.get(idSelected)[3]));
 
         RatingBar ratingBarSparkling = (RatingBar) bottomSheetView.findViewById(R.id.ratingBarSparkling);
-        ratingBarSparkling.setRating(Float.parseFloat(makgeolliListTab.get(Integer.parseInt(idSelected))[4]));
+        ratingBarSparkling.setRating(Float.parseFloat(makgeolliListTab.get(idSelected)[4]));
 
         TextView ingredient = (TextView) bottomSheetView.findViewById(R.id.ingredientText);
-        if (getCurrentLanguage() == "kr") {
-            ingredient.setText(makgeolliListTab.get(Integer.parseInt(idSelected))[16]);
+        if (getCurrentLanguage() == "ko") {
+            ingredient.setText(makgeolliListTab.get(idSelected)[16]);
         } else {
-            ingredient.setText(makgeolliListTab.get(Integer.parseInt(idSelected))[9]);
+            ingredient.setText(makgeolliListTab.get(idSelected)[9]);
         }
 
         TextView alcoolPercent = (TextView) bottomSheetView.findViewById(R.id.percentText);
-        alcoolPercent.setText(makgeolliListTab.get(Integer.parseInt(idSelected))[8]);
+        alcoolPercent.setText(makgeolliListTab.get(idSelected)[8]);
 
         TextView localisation = (TextView) bottomSheetView.findViewById(R.id.localisationText);
-        localisation.setText(makgeolliListTab.get(Integer.parseInt(idSelected))[5]);
+        if (getCurrentLanguage() == "ko") {
+            localisation.setText(makgeolliListTab.get(idSelected)[5]);
+        } else {
+            localisation.setText(makgeolliListTab.get(idSelected)[18]);
+        }
 
         TextView description = (TextView) bottomSheetView.findViewById(R.id.moreInfoText);
-        if (getCurrentLanguage().equals("kr")) {
-            description.setText(makgeolliListTab.get(Integer.parseInt(idSelected))[17]);
+        if (getCurrentLanguage().equals("ko")) {
+            description.setText(makgeolliListTab.get(idSelected)[17]);
         } else {
-            description.setText(makgeolliListTab.get(Integer.parseInt(idSelected))[10]);
+            description.setText(makgeolliListTab.get(idSelected)[10]);
         }
+
         bottomSheetView.findViewById(R.id.close).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -229,14 +248,14 @@ public class MapManager {
 
     }
 
-    private void favoriteButtonManagement(String idSelected, View bottomSheetView, ViewGroup container) {
+    private void favoriteButtonManagement(int idSelected, View bottomSheetView, ViewGroup container) {
         //_________________________________Favorite button___________________________________//
         final ImageButton favoriteBtn = bottomSheetView.findViewById(R.id.favorisbtn);
         favoriteBtn.setSelected(false);
         favoriteBtn.setImageResource(android.R.drawable.btn_star_big_off);
         if (favoriteTab != null) {
             for (String[] strings : favoriteTab) {
-                if (strings[0].equals(makgeolliListTab.get(Integer.parseInt(idSelected))[0])) {
+                if (strings[0].equals(makgeolliListTab.get(idSelected)[0])) {
                     favoriteBtn.setSelected(true);
                     favoriteBtn.setImageResource(android.R.drawable.btn_star_big_on);
                     break;
@@ -254,6 +273,12 @@ public class MapManager {
             if (favoriteListString == null) {
                 favoriteListString = "";
             }
+
+            favoriteListString = favoriteListString.trim();
+            if (!favoriteListString.endsWith("\n")) {
+                favoriteListString += "\n";
+            }
+
             MakgeolliList makgeolliList = new MakgeolliList(favoriteListString);
 
             String text;
@@ -261,13 +286,13 @@ public class MapManager {
             if (favoriteBtn.isSelected()) {
                 favoriteBtn.setImageResource(android.R.drawable.btn_star_big_on);
                 // Save data on String
-                text = makgeolliList.addDataOnString(makgeolliListTab.get(Integer.parseInt(idSelected)));
+                text = makgeolliList.addDataOnString(List.of(makgeolliListTab.get(idSelected)));
 
-                //favoriteTab.setVar(Integer.parseInt(idSelected),makgeolliListTab[Integer.parseInt(idSelected)]);
+                //favoriteTab.setVar(idSelected,makgeolliListTab[idSelected]);
             } else {
                 favoriteBtn.setImageResource(android.R.drawable.btn_star_big_off);
                 // delete from database
-                text = makgeolliList.deleteDataFromString(makgeolliListTab.get(Integer.parseInt(idSelected)));
+                text = makgeolliList.deleteDataFromString(makgeolliListTab.get(idSelected));
             }
             SharedPreferences.Editor editor = prefs.edit();
             editor.putString(FAVORITE_LIST, text);
@@ -301,9 +326,11 @@ public class MapManager {
             }
 
             if (isFavorite) {
+
                 if (makgeolliListTab == null || favoriteTabs == null) {
                     Log.e("MapManager", "Erreur : makgeolliListTab ou favoriteTabs est null");
-                    new AlertDialog.Builder(container.getContext()).setTitle("Erreur").setMessage("Erreur : pas de favoris disponible").show();
+                    AlertDialog alertDialog = new AlertDialog.Builder(container.getContext(), R.style.CustomAlertDialog).setTitle(R.string.Error).setMessage(R.string.error_favorite_list).show();
+                    alertDialog.getButton(androidx.appcompat.app.AlertDialog.BUTTON_POSITIVE).setTextColor(container.getContext().getResources().getColor(R.color.primary));
                     return;
                 }
 
@@ -311,8 +338,8 @@ public class MapManager {
                 boolean visible = false;
                 for (String[] tab : favoriteTabs) {
                     Log.w("MakgeolliGuru", String.format("favoriteTab: %s", tab[0]));
-                    Log.w("MakgeolliGuru", String.format("completeList: %s", makgeolliListTab.get(Integer.parseInt(marker.getId().substring(1)))[0]));
-                    if (!visible && !tab[0].contains(makgeolliListTab.get(Integer.parseInt(marker.getId().substring(1)))[0])) {
+                    Log.w("MakgeolliGuru", String.format("completeList: %s", makgeolliListTab.get(Integer.parseInt(marker.getId().substring(1))+1)[0]));
+                    if (!visible && !tab[0].equals(makgeolliListTab.get(Integer.parseInt(marker.getId().substring(1))+1)[0])) {
                         marker.setVisible(false);
                     } else {
                         Log.w("MakgeolliGuru", "visible");
@@ -357,11 +384,15 @@ public class MapManager {
         }
     }
     private void showNoResultsDialog() {
-        new AlertDialog.Builder(container.getContext())
-                .setTitle("Aucun résultat")
-                .setMessage("Aucun makgeolli ne correspond à votre recherche.")
+        AlertDialog  alertDialog =  new AlertDialog.Builder(container.getContext(), R.style.CustomAlertDialog)
+                .setTitle(R.string.Error)
+                .setMessage(R.string.error_makgeolli_list)
                 .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
                 .show();
+
+        alertDialog.getButton(androidx.appcompat.app.AlertDialog.BUTTON_POSITIVE).setTextColor(container.getContext().getResources().getColor(R.color.primary));
+
+
     }
 }
 

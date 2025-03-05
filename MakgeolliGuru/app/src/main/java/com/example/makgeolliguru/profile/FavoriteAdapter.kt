@@ -10,9 +10,6 @@ import androidx.cardview.widget.CardView
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.makgeolliguru.R
-import com.example.makgeolliguru.articles.Article
-import com.example.makgeolliguru.articles.ArticleFragment
-import com.example.makgeolliguru.profile.FavoriteAdapter
 import com.example.makgeolliguru.tools.PCloudData
 
 class FavoriteAdapter(private val favorite: List<Favorite>, private val fragmentManager: FragmentManager) : RecyclerView.Adapter<FavoriteAdapter.ViewHolder>()  {
@@ -38,7 +35,7 @@ class FavoriteAdapter(private val favorite: List<Favorite>, private val fragment
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.cardview_layout, parent, false) // Vérifie bien le nom
+            .inflate(R.layout.favorite_cardview_layout, parent, false) // Vérifie bien le nom
         return ViewHolder(view)
     }
 
@@ -67,9 +64,9 @@ class FavoriteAdapter(private val favorite: List<Favorite>, private val fragment
         holder.cardView?.setOnClickListener {
             Log.d("FavoriteAdapter", "CardView clicked at position $position")
 
-            val articleFragment = ArticleFragment(position)
+            val makgeolliInfoFragment = MakgeolliInfoFragment(favorite.data)
             fragmentManager.beginTransaction()
-                .replace(R.id.flFragment, articleFragment) // Remplacement du fragment container
+                .replace(R.id.flFragment, makgeolliInfoFragment) // Remplacement du fragment container
                 .addToBackStack(null) // Ajout à l'historique de navigation
                 .commit()
         }
@@ -77,4 +74,5 @@ class FavoriteAdapter(private val favorite: List<Favorite>, private val fragment
 
 
     override fun getItemCount() = favorite.size
+
 }

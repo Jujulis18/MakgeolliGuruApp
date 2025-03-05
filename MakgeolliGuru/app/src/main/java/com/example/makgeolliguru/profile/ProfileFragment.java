@@ -41,36 +41,39 @@ public class ProfileFragment extends Fragment  {
 
         SharedPreferences prefs = container.getContext().getSharedPreferences(SHARED_PREF, MODE_PRIVATE);
         String mak_profile = prefs.getString(MAK_PROFILE, null);
-        ImageView imageView = view.findViewById(R.id.imageView);
-        TextView name = view.findViewById(R.id.profile_name);
-        TextView description  = view.findViewById(R.id.profile_description);
         if (mak_profile != null) {
-            switch (mak_profile) {
-                case "Sparkling":
-                    imageView.setImageResource(R.drawable.marker_green);
-                    name.setText(getContext().getString(R.string.sparkling_name));
-                    description.setText(getContext().getString(R.string.sparkling_profile));
-                    break;
-                case "Fruity":
-                    imageView.setImageResource(R.drawable.marker_pink);
-                    name.setText(getContext().getString(R.string.fruity_name));
-                    description.setText(getContext().getString(R.string.fruity_profile));
-                    break;
-                case "Sweet":
-                    imageView.setImageResource(R.drawable.marker_orange);
-                    name.setText(getContext().getString(R.string.sweet_name));
-                    description.setText(getContext().getString(R.string.sweet_profile));
-                    break;
+            ImageView imageView = view.findViewById(R.id.imageView);
+            TextView name = view.findViewById(R.id.profile_name);
+            TextView description = view.findViewById(R.id.profile_description);
+            if (mak_profile != null) {
+                CardView cardView = view.findViewById(R.id.profile_card_view);
+                cardView.setVisibility(View.VISIBLE);
+
+                switch (mak_profile) {
+                    case "Sparkling":
+                        imageView.setImageResource(R.drawable.marker_green);
+                        name.setText(getContext().getString(R.string.sparkling_name));
+                        description.setText(getContext().getString(R.string.sparkling_profile));
+                        break;
+                    case "Fruity":
+                        imageView.setImageResource(R.drawable.marker_pink);
+                        name.setText(getContext().getString(R.string.fruity_name));
+                        description.setText(getContext().getString(R.string.fruity_profile));
+                        break;
+                    case "Sweet":
+                        imageView.setImageResource(R.drawable.marker_orange);
+                        name.setText(getContext().getString(R.string.sweet_name));
+                        description.setText(getContext().getString(R.string.sweet_profile));
+                        break;
+
+                }
 
             }
-
         }
 
-        ImageView launchQuestionnaire = view.findViewById(R.id.imageView1);
+        CardView launchQuestionnaire = view.findViewById(R.id.questionnaire_card_view);
         FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-        if (launchQuestionnaire == null) {
-            Log.e("ProfileFragment", "launch_questionnaire is null");
-        }
+
         infoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

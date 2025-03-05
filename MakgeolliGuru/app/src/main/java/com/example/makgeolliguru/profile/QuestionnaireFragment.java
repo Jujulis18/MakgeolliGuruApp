@@ -23,6 +23,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.makgeolliguru.R;
 
+import java.util.Locale;
+
 public class QuestionnaireFragment extends Fragment {
 
     public QuestionnaireFragment() {
@@ -43,12 +45,12 @@ public class QuestionnaireFragment extends Fragment {
     private QuestionnaireRules questionnaire;
 
     private String[] questions = {
-            "Makgeolli Setting:",
-            "Stress-relief Style:",
-            "Preferred Makgeolli Mood:",
-            "Life Mantra:",
-            "Decision-making Approach:",
-            "Vacation Destination Preference:"
+            "How do you typically spend your free time?",
+            "How do you typically unwind after a stressful day?",
+            "What genre of movies do you enjoy the most?",
+            "What could be your life mantra or guiding principle?",
+            "How do you approach making important decisions?",
+            "Where do you dream of going for a vacation?"
     };
 
     private String[][] options = {
@@ -59,6 +61,25 @@ public class QuestionnaireFragment extends Fragment {
             {"Analyzing pros and cons", "Listening to your intuition", "Seeking advice from others"},
             {"Mountains or wilderness", "Cultural cities and museums", "Beach or resort relaxation"}
     };
+
+    private String[] questions_kr = {
+            "보통 여가 시간을 어떻게 보내시나요?",
+            "스트레스가 많은 하루를 마친 후, 보통 어떻게 풀리시나요?",
+            "가장 좋아하는 영화 장르는 무엇인가요?",
+            "당신의 인생 만트라는 무엇인가요, 또는 중요한 원칙은 무엇인가요?",
+            "중요한 결정을 내릴 때, 보통 어떤 방식으로 접근하시나요?",
+            "휴가를 가고 싶은 꿈의 장소는 어디인가요?"
+    };
+
+    private String[][] options_kr = {
+            {"자연을 탐험하기", "좋은 책 읽기", "친구들과 사회적 활동하기"},
+            {"운동이나 야외 활동", "명상과 휴식", "친구나 가족과 이야기 나누기"},
+            {"액션과 모험", "드라마와 다큐멘터리", "코미디와 가벼운 영화"},
+            {"\"Carpe Diem\" - 오늘을 즐기세요!", "\"To thine own self be true\" - 진실된 자신이 되세요.", "\"Hakuna Matata\" - 걱정하지 말고, 마음 편히 살아요."},
+            {"장단점 분석하기", "직감을 따르기", "다른 사람의 조언을 구하기"},
+            {"산이나 자연", "문화 도시와 박물관", "해변이나 리조트에서 휴식"}
+    };
+
 
     private char[] userAnswers = new char[questions.length];
 
@@ -122,11 +143,19 @@ public class QuestionnaireFragment extends Fragment {
 
     private void displayQuestion() {
         if (questionId >= 0 && questionId < questions.length) {
-            questionTextView.setText(questions[questionId]);
+            String[] currentOptions;
+            if (Locale.getDefault().getLanguage().equals("ko")) {
+                questionTextView.setText(questions_kr[questionId]);
+                currentOptions = options_kr[questionId];
+            }
+            else{
+                questionTextView.setText(questions[questionId]);
+                currentOptions = options[questionId];
+            }
 
             optionsRadioGroup.clearCheck();
             optionsRadioGroup.removeAllViews();
-            String[] currentOptions = options[questionId];
+
             for (String option : currentOptions) {
                 RadioButton radioButton = new RadioButton(getContext());
                 radioButton.setText(option);
@@ -141,7 +170,9 @@ public class QuestionnaireFragment extends Fragment {
         String makgeolliCategory = questionnaire.calculateMakgeolliCategory(getContext());
 
         // Display the result in a pop-up dialog
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.CustomAlertDialog);
+
+
         builder.setTitle("Makgeolli Recommendation");
         builder.setMessage(makgeolliCategory);
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -163,14 +194,22 @@ public class QuestionnaireFragment extends Fragment {
                 editor.putString(MAK_PROFILE, mak_profile);
                 editor.apply();
 
+                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+                ProfileFragment profileFragment = new ProfileFragment();
+                fragmentManager.beginTransaction()
+                        .replace(R.id.flFragment, profileFragment)
+                        .addToBackStack(null) // Ajout à l'historique de navigation
+                        .commit();
+
+                fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
             }
         });
-        AlertDialog dialog = builder.create();
-        dialog.show();
-        // Display the result or navigate to the next activity to show the result
-        // Example: Intent intent = new Intent(QuestionnaireActivity.this, ResultActivity.class);
-        // intent.putExtra("makgeolliCategory", makgeolliCategory);
-        // startActivity(intent);
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.primary));
+
     }
 }
 

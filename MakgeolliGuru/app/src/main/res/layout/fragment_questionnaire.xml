@@ -14,8 +14,7 @@
         android:layout_marginBottom="20dp"
         app:cardCornerRadius="16dp"
         app:cardElevation="6dp"
-        app:strokeWidth="1dp"
-        app:strokeColor="#E0E0E0">
+        style="@style/CardStyle">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,9 +27,7 @@
                 android:id="@+id/questionTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"
+                style="@style/TextStyle_Title"
                 android:gravity="center"
                 android:text="Quelle est votre boisson coréenne préférée ?" />
 
@@ -41,7 +38,6 @@
                 app:cardCornerRadius="12dp"
                 app:cardElevation="2dp"
                 app:strokeWidth="1dp"
-                app:strokeColor="#B0B0B0"
                 android:layout_marginTop="16dp">
 
                 <RadioGroup
@@ -56,7 +52,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Soju"
-                        android:textSize="16sp"
+                        style="@style/TextStyle_Body"
                         android:padding="8dp" />
 
                     <RadioButton
@@ -64,7 +60,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Makgeolli"
-                        android:textSize="16sp"
+                        style="@style/TextStyle_Body"
                         android:padding="8dp" />
 
                     <RadioButton
@@ -72,7 +68,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Bokbunja"
-                        android:textSize="16sp"
+                        style="@style/TextStyle_Body"
                         android:padding="8dp" />
 
                 </RadioGroup>
@@ -87,11 +83,7 @@
         android:id="@+id/nextButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Suivant"
-        android:layout_marginTop="10dp"
-        app:cornerRadius="50dp"
-        android:textSize="16sp"
-        android:paddingVertical="12dp"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+        android:text="Next"
+        style="@style/ButtonStyle_Primary" />
 
 </LinearLayout>

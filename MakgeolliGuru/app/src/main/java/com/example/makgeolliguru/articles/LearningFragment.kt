@@ -2,25 +2,20 @@ package com.example.makgeolliguru.articles
 
 import android.content.Context
 import android.os.Bundle
-import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
-import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.makgeolliguru.MainActivity
 import com.example.makgeolliguru.R
 import com.example.makgeolliguru.map.MakgeolliList
+import com.example.makgeolliguru.map.MapFragment
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.nio.charset.StandardCharsets
 import java.util.stream.Collectors
-import kotlin.text.replace
 
 class LearningFragment : Fragment() {
     override fun onCreateView(
@@ -43,10 +38,16 @@ class LearningFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
 
-        val articleListTab = MakgeolliList(articleListString)?.ReadFileInto2DArray()
+        val articleListTab = MakgeolliList(articleListString).ReadFileInto2DArray()
 
         val articles = articleListTab?.map { article ->
-            Article(article[1], imageUrl=article[5]) } ?:
+           var title: String
+            if (MapFragment.getCurrentLanguage() == "ko") {
+                title = article[13]
+            } else {
+                title = article[1]
+            }
+            Article(title, imageUrl=article[5]) } ?:
             emptyList()
 
         val adapter = ArticlesAdapter(articles, requireActivity().supportFragmentManager)
