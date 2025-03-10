@@ -26,6 +26,7 @@
             />
 
         <TextView
+            android:id="@+id/tagsView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="tags"
@@ -34,6 +35,7 @@
             android:layout_gravity="bottom" />
 
         <TextView
+            android:id="@+id/dateView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Date"

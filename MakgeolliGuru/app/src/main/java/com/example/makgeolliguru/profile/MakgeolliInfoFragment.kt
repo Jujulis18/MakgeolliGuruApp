@@ -25,6 +25,9 @@ class MakgeolliInfoFragment(private var item: Array<String>?) : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_makgeolli_info, container, false)
 
+        val tagsView = view.findViewById<TextView>(R.id.tagsView)
+        //tagsview empty
+        tagsView.text = ""
 
         Log.e("item", " MakgeolliInfoFragment:"+item.toString());
         val mak = item

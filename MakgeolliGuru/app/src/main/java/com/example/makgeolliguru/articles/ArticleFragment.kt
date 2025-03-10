@@ -43,6 +43,9 @@ class ArticleFragment(var itemId: Int) : Fragment() {
 
         // Display the ID or use it to load data
 
+        val dateView = view.findViewById<TextView>(R.id.dateView)
+        val tagsView = view.findViewById<TextView>(R.id.tagsView)
+
         val textView = view.findViewById<TextView>(R.id.titleTextView)
         val intro = view.findViewById<TextView>(R.id.IntroView)
         val textView1 = view.findViewById<TextView>(R.id.paragraphTitle1)
@@ -52,6 +55,10 @@ class ArticleFragment(var itemId: Int) : Fragment() {
         val textView5 = view.findViewById<TextView>(R.id.paragraphTitle3)
         val textView6 = view.findViewById<TextView>(R.id.paragraphText3)
         val textView7 = view.findViewById<TextView>(R.id.ConclusionView)
+
+
+        dateView.text = ""
+        tagsView.text = ""
 
         if (MapFragment.getCurrentLanguage() == "ko") {
             textView.text = articleData[13]

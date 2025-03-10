@@ -5,27 +5,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <!-- Non-scrollable section at the top -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:background="@color/primary"
-        android:orientation="horizontal"
-        android:padding="16dp">
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="match_parent"
-            android:src="@android:drawable/btn_star"
-            android:layout_gravity="left"
-            app:tint="@android:color/white"/>
-        <TextView
+
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Favorite"
-            android:fontFamily="@style/TextStyle_Title"
-            android:textColor="@color/background"
-            android:layout_gravity="center" />
-    </LinearLayout>
+            android:layout_height="56dp"
+            android:background="@color/primary"
+            android:orientation="horizontal"
+            android:padding="15dp">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:src="@android:drawable/btn_star"
+                app:tint="@color/background"
+                android:textSize="18sp"
+                android:layout_marginEnd="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/favorite"
+                style="@style/TextStyle_Subtitle"
+                android:textColor="@color/background"
+                android:layout_gravity="center"/>
+
+
+        </LinearLayout>
 
     <!-- RecyclerView qui occupe toute la place disponible -->
     <androidx.recyclerview.widget.RecyclerView

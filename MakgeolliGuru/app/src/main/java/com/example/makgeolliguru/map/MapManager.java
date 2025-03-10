@@ -349,27 +349,27 @@ public class MapManager {
                 }
             }
             if (isFruity) {
-                if (!makgeolliListTab.get(Integer.parseInt(marker.getId().substring(1)))[12].contains("Yes")) {
+                if (!makgeolliListTab.get(Integer.parseInt(marker.getId().substring(1))+1)[12].contains("Yes")) {
                     marker.setVisible(false);
                 }
             }
             if (isNuts) {
-                if (!makgeolliListTab.get(Integer.parseInt(marker.getId().substring(1)))[13].contains("Yes")) {
+                if (!makgeolliListTab.get(Integer.parseInt(marker.getId().substring(1))+1)[13].contains("Yes")) {
                     marker.setVisible(false);
                 }
             }
             if (isSparkling) {
-                if (Integer.parseInt(makgeolliListTab.get(Integer.parseInt(marker.getId().substring(1)))[4]) <= 3) {
+                if (Integer.parseInt(makgeolliListTab.get(Integer.parseInt(marker.getId().substring(1))+1)[4]) <= 3) {
                     marker.setVisible(false);
                 }
             }
             if (isSour) {
-                if (Integer.parseInt(makgeolliListTab.get(Integer.parseInt(marker.getId().substring(1)))[2]) <= 3) {
+                if (Integer.parseInt(makgeolliListTab.get(Integer.parseInt(marker.getId().substring(1))+1)[2]) <= 3) {
                     marker.setVisible(false);
                 }
             }
             if (isSweet) {
-                if (Integer.parseInt(makgeolliListTab.get(Integer.parseInt(marker.getId().substring(1)))[1]) <= 3) {
+                if (Integer.parseInt(makgeolliListTab.get(Integer.parseInt(marker.getId().substring(1))+1)[1]) <= 3) {
                     marker.setVisible(false);
                 }
             }
