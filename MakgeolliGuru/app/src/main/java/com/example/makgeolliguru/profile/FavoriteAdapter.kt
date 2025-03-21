@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.makgeolliguru.R
 import com.example.makgeolliguru.tools.PCloudData
 
@@ -54,11 +55,12 @@ class FavoriteAdapter(private val favorite: List<Favorite>, private val fragment
         holder.nameTextView.text = favorite.name
         holder.localisationTextView.text = favorite.localisation
 
-        // Chargement de l'image avec PCloudData
-        val imageUrl = favorite.imageUrl
-        Log.d("FavoriteAdapter", "Loading image from: $imageUrl")
 
-        PCloudData.downloadAndLoadImage(holder.imageView.context, imageUrl, holder.imageView)
+        Glide.with(holder.imageView.context)
+            .load(favorite.imageUrl)
+            .placeholder(R.drawable.marker)
+            .error(R.drawable.marker)
+            .into(holder.imageView)
 
         // Gestion du clic sur la CardView
         holder.cardView?.setOnClickListener {

@@ -51,17 +51,17 @@ public class ProfileFragment extends Fragment  {
 
                 switch (mak_profile) {
                     case "Sparkling":
-                        imageView.setImageResource(R.drawable.marker_green);
+                        imageView.setImageResource(R.drawable.sparkling_perso);
                         name.setText(getContext().getString(R.string.sparkling_name));
                         description.setText(getContext().getString(R.string.sparkling_profile));
                         break;
                     case "Fruity":
-                        imageView.setImageResource(R.drawable.marker_pink);
+                        imageView.setImageResource(R.drawable.fruity_perso);
                         name.setText(getContext().getString(R.string.fruity_name));
                         description.setText(getContext().getString(R.string.fruity_profile));
                         break;
                     case "Sweet":
-                        imageView.setImageResource(R.drawable.marker_orange);
+                        imageView.setImageResource(R.drawable.nuts_perso);
                         name.setText(getContext().getString(R.string.sweet_name));
                         description.setText(getContext().getString(R.string.sweet_profile));
                         break;

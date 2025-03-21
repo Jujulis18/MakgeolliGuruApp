@@ -2,6 +2,7 @@ package com.example.makgeolliguru.profile
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -54,9 +55,11 @@ class FavoriteFragment:Fragment() {
                     title = mak?.getOrNull(15)?: "N/A"
                     localisation=mak?.getOrNull(20)?: "N/A"
                 }
-                Favorite(title, imageUrl =mak?.getOrNull(1)?: "N/A", localisation, mak) } ?:
+                Log.d("mak", mak.toString())
+                Favorite(title, imageUrl =mak?.getOrNull(19)?: "N/A", localisation, mak) } ?:
             emptyList()
 
+            Log.d("favorite", favorite.toString())
             val adapter = FavoriteAdapter(favorite, requireActivity().supportFragmentManager)
             recyclerView.adapter = adapter
 

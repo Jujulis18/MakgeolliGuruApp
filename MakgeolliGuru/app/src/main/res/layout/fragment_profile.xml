@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:src="@android:drawable/ic_dialog_info"
         app:tint="@color/primary"
-        android:background="@color/surface"/>
+        android:background="@android:color/transparent"/>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/profile_card_view"
