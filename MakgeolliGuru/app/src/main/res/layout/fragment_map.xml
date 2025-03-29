@@ -53,7 +53,7 @@
     <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/filter_container"
-        android:layout_width="300dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:layout_marginStart="70dp"
@@ -163,6 +163,11 @@
 
 
         </com.google.android.material.chip.ChipGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
         <com.google.android.material.chip.Chip
             android:id="@+id/chipFilter"
             android:layout_width="wrap_content"
@@ -170,6 +175,15 @@
             style="@style/ButtonStyle_Primary"
             android:text="@string/filter"
             android:textAlignment="center" />
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipClear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ButtonStyle_Outlined"
+            android:text="@string/clear"
+            android:layout_marginStart="5dp"
+            android:textAlignment="center" />
+    </LinearLayout>
     </LinearLayout>
     </androidx.cardview.widget.CardView>
         <!-- Container flottant -->

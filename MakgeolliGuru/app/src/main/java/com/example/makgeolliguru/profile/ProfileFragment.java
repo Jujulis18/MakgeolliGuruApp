@@ -104,6 +104,17 @@ public class ProfileFragment extends Fragment  {
             fragmentTransaction.commit();
         });
 
+        CardView savedCardView = view.findViewById(R.id.saved_card_view);
+        savedCardView.setOnClickListener ( v ->{
+
+            SavedFragment savedFragment = new SavedFragment();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction()
+                    .replace(R.id.flFragment, savedFragment)
+                    .addToBackStack(null);
+
+            fragmentTransaction.commit();
+        });
+
         return view;
     }
 }

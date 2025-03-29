@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -69,14 +71,10 @@ public class MapFragment extends Fragment {
 
         // Update data
         view.findViewById(R.id.updatebtn).setOnClickListener(v -> {
-            try {
-                dataManager.updateDataFromAPI();
-                Toast.makeText(container.getContext(), "Refresh the page, please", Toast.LENGTH_SHORT).show();
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.detach(MapFragment.this).attach(MapFragment.this).commit();
-            } catch (ExecutionException | InterruptedException e) {
-                e.printStackTrace();
-            }
+            dataManager.updateDataFromAPI();
+            Toast.makeText(container.getContext(), "Refresh the page, please", Toast.LENGTH_SHORT).show();
+            FragmentTransaction ft = getFragmentManager().beginTransaction();
+            ft.detach(MapFragment.this).attach(MapFragment.this).commit();
         });
 
         // Filter
@@ -89,6 +87,11 @@ public class MapFragment extends Fragment {
             mapManager.filterMarkers(chipGroup, dataManager.loadMakgeolliList(), dataManager.loadFavoriteList());
         });
 
+        view.findViewById(R.id.chipClear).setOnClickListener(v -> {
+            chipGroup.clearCheck();
+            EditText searchBar = view.findViewById(R.id.search_bar);
+            searchBar.getText().clear();
+        });
 
 
 

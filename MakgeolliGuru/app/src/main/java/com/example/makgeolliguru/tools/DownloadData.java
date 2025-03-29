@@ -19,45 +19,46 @@ import java.nio.charset.StandardCharsets;
 import java.util.stream.Collectors;
 
 
-public class DownloadData extends AsyncTask<String,Void,String> {
+public class DownloadData extends AsyncTask<String, Void, String> {
+    private final DownloadCallback callback;
 
-    //private Context context;
-
-    /*public DownloadData() {
-
-    }*/
-
-    @Override
-    protected void onPreExecute() {
-        super.onPreExecute();
-
+    public DownloadData(DownloadCallback callback) {
+        this.callback = callback;
     }
 
     @Override
-    protected String doInBackground(String... string) {
+    protected String doInBackground(String... urls) {
+        // Implement the download logic here
+        // Return the downloaded data as a String
+        String fileUrl = urls[0];
+        StringBuilder content = new StringBuilder();
 
         try {
-            URL url = new URL(string[0]);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setDoInput(true);
-            connection.connect();
+            URL url = new URL(fileUrl);
+            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setRequestMethod("GET");
 
-            InputStream inputStream = connection.getInputStream();
-            //CSVFile csvFile = new CSVFile(inputStream);
-            //MainActivity.makgeolliList = csvFile.ReadFileInto2DArray();
-            //String[][] test = csvFile.ReadFileInto2DArray();
-            String text = new BufferedReader(
-                    new InputStreamReader(inputStream, StandardCharsets.UTF_8))
-                    .lines()
-                    .collect(Collectors.joining("\n"));
-
-            return text;
-        }  catch (IOException e) {
-            throw new RuntimeException(e);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                content.append(line).append("\n");
+            }
+            reader.close();
+            urlConnection.disconnect();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
 
-
-
+        return content.toString();
     }
 
+    @Override
+    protected void onPostExecute(String result) {
+        if (result != null) {
+            callback.onDataDownloaded(result);
+        } else {
+            callback.onError(new Exception("Failed to download data"));
+        }
+    }
 }

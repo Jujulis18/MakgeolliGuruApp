@@ -182,7 +182,7 @@
         android:gravity="center">
 
     <androidx.cardview.widget.CardView
-
+        android:id="@+id/saved_card_view"
         android:layout_width="120dp"
         android:layout_height="100dp"
         android:backgroundTint="@color/surface"
@@ -196,7 +196,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="20dp"
                 app:tint="@color/tertiary"
-                android:src="@drawable/book"></ImageView>
+                android:src="@android:drawable/ic_input_get"></ImageView>
 
 
 

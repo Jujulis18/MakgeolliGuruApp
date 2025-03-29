@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     public static final String SHARED_PREF = "com.example.makgeolliguru.SHARED_PREF";
     public static final String MAK_LIST = "com.example.makgeolliguru.MAK_LIST";
     public static final String FAVORITE_LIST = "com.example.makgeolliguru.FAVORITE_LIST";
+    public static final String SAVED_LIST = "com.example.makgeolliguru.SAVED_LIST";
     public static final String ARTICLE_LIST = "com.example.makgeolliguru.ARTICLE_LIST";
     public static final String MAK_PROFILE = "com.example.makgeolliguru.MAK_PROFILE";
 

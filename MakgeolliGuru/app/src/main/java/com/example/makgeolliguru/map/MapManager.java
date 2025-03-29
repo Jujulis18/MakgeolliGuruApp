@@ -1,7 +1,9 @@
 package com.example.makgeolliguru.map;
 
 import static android.content.Context.MODE_PRIVATE;
+import static android.graphics.Color.parseColor;
 import static com.example.makgeolliguru.MainActivity.FAVORITE_LIST;
+import static com.example.makgeolliguru.MainActivity.SAVED_LIST;
 import static com.example.makgeolliguru.MainActivity.SHARED_PREF;
 import static com.example.makgeolliguru.map.MapFragment.getCurrentLanguage;
 
@@ -10,7 +12,10 @@ import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,6 +53,7 @@ public class MapManager {
     private ViewGroup container;
 
     static List<String[]> favoriteTab;
+    static List<String[]> savedTab;
     static List<String[]> makgeolliListTab;
 
     public void initializeMap(GoogleMap googleMap, ViewGroup container, List<String[]> makgeolliListTab, List<String[]> favoriteTab, View bottomSheetView ) {
@@ -242,7 +248,7 @@ public class MapManager {
             }
         });
         favoriteButtonManagement(idSelected, bottomSheetView, container);
-
+        savedButtonManagement(idSelected, bottomSheetView, container);
         bottomSheetDialog.setContentView(bottomSheetView);
         bottomSheetDialog.show();
 
@@ -301,7 +307,62 @@ public class MapManager {
         });
     }
 
+    private void savedButtonManagement(int idSelected, View bottomSheetView, ViewGroup container) {
+        //_________________________________Favorite button___________________________________//
+        final ImageButton savedBtn = bottomSheetView.findViewById(R.id.savedbtn);
+        savedBtn.setSelected(false);
+        savedBtn.setImageResource(android.R.drawable.ic_input_get);
 
+
+        savedBtn.setColorFilter(parseColor("#AFADA9"));
+
+        if (savedTab != null) {
+            for (String[] strings : savedTab) {
+                if (strings[0].equals(makgeolliListTab.get(idSelected)[0])) {
+                    savedBtn.setSelected(true);
+                    // set color of button
+                    savedBtn.setColorFilter(container.getContext().getResources().getColor(R.color.secondary), PorterDuff.Mode.SRC_IN);
+                    break;
+                }
+
+            }
+        }
+
+        savedBtn.setOnClickListener(view -> {
+            Toast.makeText(container.getContext(), "Saved makgeolli..", Toast.LENGTH_SHORT).show();
+            // save as favorite
+            savedBtn.setSelected(!savedBtn.isSelected());
+            SharedPreferences prefs = container.getContext().getSharedPreferences(SHARED_PREF, MODE_PRIVATE);
+            String savedListString = prefs.getString(SAVED_LIST, null);
+            if (savedListString == null) {
+                savedListString = "";
+            }
+
+            savedListString = savedListString.trim();
+            if (!savedListString.endsWith("\n")) {
+                savedListString += "\n";
+            }
+
+            MakgeolliList makgeolliList = new MakgeolliList(savedListString);
+
+            String text;
+
+            if (savedBtn.isSelected()) {
+                savedBtn.setColorFilter(container.getContext().getResources().getColor(R.color.secondary), PorterDuff.Mode.SRC_IN);
+                text = makgeolliList.addDataOnString(List.of(makgeolliListTab.get(idSelected)));
+            } else {
+                savedBtn.setColorFilter(parseColor("#AFADA9"));
+                text = makgeolliList.deleteDataFromString(makgeolliListTab.get(idSelected));
+            }
+
+
+
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putString(SAVED_LIST, text);
+            editor.apply();
+            savedTab = makgeolliList.ReadFileInto2DArray();
+        });
+    }
 
     public void filterMarkers(ChipGroup chipGroup, List<String[]> makgeolliListTab, List<String[]> favoriteTabs) {
 
