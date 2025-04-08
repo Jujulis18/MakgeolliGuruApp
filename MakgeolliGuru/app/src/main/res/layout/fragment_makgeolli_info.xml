@@ -10,27 +10,58 @@
         android:layout_width="match_parent"
         android:layout_height="112dp"
         android:background="@color/primary"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:padding="16dp"
         android:radius="26dp">
-        <ImageView
-            android:id="@+id/favoriteclosebtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:focusable="true"
-            android:src="@android:drawable/ic_menu_close_clear_cancel"
-            android:layout_gravity="top"/>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="10dp"
+                android:layout_gravity="end"
+                android:contentDescription="@string/app_name"
+                android:src="@android:drawable/ic_menu_close_clear_cancel"
+                android:id="@+id/favoriteclosebtn"/>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:layout_marginEnd="10dp">
+
+                <ImageButton
+                    android:id="@+id/favorisbtn"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@color/primary"
+                    android:src="@android:drawable/btn_star_big_off" />
+
+                <ImageButton
+                    android:id="@+id/savedbtn"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@color/primary"
+                    android:src="@android:drawable/ic_input_get" />
+            </LinearLayout>
+
+        </LinearLayout>
         <TextView
             android:id="@+id/tagsView"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="tags"
+            android:layout_marginTop="10dp"
+            android:gravity="end"
             android:fontFamily="@style/TextStyle_Label"
             android:textColor="@color/background"
             android:layout_gravity="bottom" />
+
+
 
     </LinearLayout>
 

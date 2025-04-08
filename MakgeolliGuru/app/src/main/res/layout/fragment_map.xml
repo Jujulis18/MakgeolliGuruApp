@@ -45,7 +45,7 @@
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context="com.example.makgeolliguru.MainActivity"
+            tools:context="myapp.makgeolliguru.MainActivity"
             map:cameraZoom="6" />
 
 
@@ -186,7 +186,119 @@
     </LinearLayout>
     </LinearLayout>
     </androidx.cardview.widget.CardView>
-        <!-- Container flottant -->
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/info_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_marginStart="70dp"
+        android:backgroundTint="@color/surface"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_gravity="center"
+        app:cardCornerRadius="8dp"
+        android:visibility="gone"
+        >
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:orientation="vertical"
+            android:elevation="8dp"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+                <ImageButton
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:scaleType="fitCenter"
+                    android:backgroundTint="@color/surface"
+                    android:src="@drawable/marker_pink" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/fruity"
+                    style="@style/TextStyle_BodySmall"
+                    android:textColor="@color/primary"
+                    android:gravity="center"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+                <ImageButton
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:scaleType="fitCenter"
+                    android:backgroundTint="@color/surface"
+                    android:src="@drawable/marker_orange" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/nuts"
+                    style="@style/TextStyle_BodySmall"
+                    android:textColor="@color/primary"
+                    android:gravity="center"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+                <ImageButton
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:scaleType="fitCenter"
+                    android:backgroundTint="@color/surface"
+                    android:src="@drawable/marker_green" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/sparkling"
+                    style="@style/TextStyle_BodySmall"
+                    android:textColor="@color/primary"
+
+                    android:gravity="center"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+                <ImageButton
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:scaleType="fitCenter"
+                    android:backgroundTint="@color/surface"
+                    android:src="@drawable/marker" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/makgeolli"
+                    style="@style/TextStyle_BodySmall"
+                    android:textColor="@color/primary"
+                    android:gravity="center"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <!-- Container flottant -->
     <androidx.cardview.widget.CardView
         android:id="@+id/floatingContainer"
         android:layout_width="50dp"
@@ -195,9 +307,9 @@
         android:layout_marginStart="10dp"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="60dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginRight="30dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="10dp"
         android:background="@color/background"
         android:elevation="8dp"
         app:cardCornerRadius="16dp">
@@ -230,6 +342,29 @@
                 app:tint="@color/tertiary" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/floatingContainerInfo"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="30dp"
+
+        android:background="@color/background"
+        app:cardCornerRadius="16dp">
+        <ImageButton
+            android:id="@+id/infobtn"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_gravity="center"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Info"
+
+            android:scaleType="fitCenter"
+            android:src="@android:drawable/ic_dialog_info"
+            app:tint="@color/tertiary" />
+    </androidx.cardview.widget.CardView>
+    </LinearLayout>
 
 
 

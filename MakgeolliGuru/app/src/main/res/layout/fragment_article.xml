@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -45,11 +46,16 @@
             android:layout_marginStart="250dp"/>
 
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/zoomableLayout">
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -200,7 +206,6 @@
 
 
     </LinearLayout>
-    <!-- Title -->
     <TextView
         android:id="@+id/ConclusionView"
         android:layout_width="match_parent"
@@ -208,7 +213,15 @@
         android:text="Paragraph 3 Text"
         android:padding="16dp"
         style="@style/TextStyle_Body"/>
+    <TextView
+        android:id="@+id/InformationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Writer information"
+        android:padding="16dp"
+        style="@style/TextStyle_BodySmall"/>
 
 </LinearLayout>
     </ScrollView>
+    </LinearLayout>
 </LinearLayout>

@@ -52,5 +52,6 @@
     <string name="error_makgeolli_list">"Did not match any Makgeolli"\</string>
     <string name="saved">Saved\n</string>
     <string name="clear">Clear</string>
+    <string name="makgeolli">makgeolli</string>
 
 </resources>

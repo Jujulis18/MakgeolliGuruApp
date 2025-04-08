@@ -41,12 +41,18 @@
 
         </LinearLayout>
 
-    <!-- RecyclerView qui occupe toute la place disponible -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/dynamic_content"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp" />
-
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            >
+            <!-- RecyclerView qui occupe toute la place disponible -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/dynamic_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="16dp" />
+        </ScrollView>
 </LinearLayout>
+
 </FrameLayout>
