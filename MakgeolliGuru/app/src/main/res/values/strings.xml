@@ -50,8 +50,8 @@
     <string name="Error">Error</string>
     <string name="error_favorite_list">\"You don\'t have favorite makgeolli."\</string>
     <string name="error_makgeolli_list">"Did not match any Makgeolli"\</string>
-    <string name="saved">Saved\n</string>
+    <string name="saved">Saved</string>
     <string name="clear">Clear</string>
-    <string name="makgeolli">makgeolli</string>
+    <string name="makgeolli">Original</string>
 
 </resources>

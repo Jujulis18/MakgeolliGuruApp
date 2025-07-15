@@ -42,4 +42,7 @@
     <string name="Error">오류</string>
     <string name="error_favorite_list">즐겨찾기 저장 없음</string>
     <string name="error_makgeolli_list">막걸리와 일치하지 않았습니다</string>
+    <string name="saved">저장됨</string>
+    <string name="clear">분명한</string>
+    <string name="makgeolli">오리지널</string>
 </resources>
