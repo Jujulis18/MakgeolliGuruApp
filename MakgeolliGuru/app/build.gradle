@@ -1,17 +1,20 @@
 plugins {
     id 'com.android.application'
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
+    id 'org.jetbrains.kotlin.android'
+    id 'com.google.gms.google-services'
 }
 
 android {
-    namespace 'com.example.makgeolliguru'
-    compileSdk 34
+    namespace 'com.myapp.makgeolliguru'
+    compileSdk 35
 
     defaultConfig {
-        applicationId "com.example.makgeolliguru"
-        minSdk 25
-        versionCode 1
-        versionName "1.0"
+        applicationId "com.myapp.makgeolliguru"
+        targetSdkVersion 34
+        minSdk 28
+        versionCode 5
+        versionName "1.0.4"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -27,6 +30,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
     }
+    kotlinOptions {
+        jvmTarget = "11" // Or a higher supported version (e.g., "11", "17")
+    }
 }
 
 dependencies {
@@ -35,10 +41,35 @@ dependencies {
     implementation 'com.google.android.material:material:1.12.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.2.0'
     implementation 'com.google.android.gms:play-services-maps:19.0.0'
+    implementation 'androidx.core:core-ktx:1.15.0'
+    implementation 'androidx.compose.material3:material3-android:1.3.1'
+    implementation 'androidx.work:work-runtime-ktx:2.10.0'
     testImplementation 'junit:junit:4.13.2'
+
+
+
+
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.10.0'
+
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.16.0'
+
+    implementation 'com.squareup.okhttp3:okhttp:4.9.3'
+
+    implementation 'com.opencsv:opencsv:5.7.1'
+
+    // Convertit JSON en objets Kotlin
+
 //    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
 //    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
     /*implementation 'com.google.api-client:google-api-client:2.0.0'
     implementation 'com.google.oauth-client:google-oauth-client-jetty:1.34.1'
     implementation 'com.google.apis:google-api-services-sheets:v4-rev20220927-2.0.0'*/
 }
+
+

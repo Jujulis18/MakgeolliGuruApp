@@ -14,126 +14,360 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#035460"
+            android:layout_height="56dp"
+            android:background="@color/primary"
             android:orientation="horizontal"
-            android:padding="5dp"
+            android:padding="15dp"
             tools:ignore="MissingConstraints">
 
             <ImageView
-                android:layout_width="80dp"
+                android:layout_width="40dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="left"
-                android:padding="1dp"
                 android:src="@drawable/map"
-
-                app:tint="@android:color/white" />
+                app:tint="@color/background"
+                android:layout_marginEnd="10dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/makgeolli_map"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
+                style="@style/TextStyle_Subtitle"
+                android:textSize="18sp"
+                android:textColor="@color/background"
+                android:layout_gravity="center"/>
+
 
         </LinearLayout>
-
         <!-- TODO: Update blank fragment layout -->
         <fragment xmlns:map="http://schemas.android.com/apk/res-auto"
             android:id="@+id/map"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context="com.example.makgeolliguru.MainActivity"
+            tools:context="myapp.makgeolliguru.MainActivity"
             map:cameraZoom="6" />
 
-    </LinearLayout>
 
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/filter"
+    </LinearLayout>
+    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/filter_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_x="10dp"
-        android:layout_y="50dp"
-        app:chipSpacingVertical="0dp">
+        android:layout_marginTop="60dp"
+        android:layout_marginStart="70dp"
+        android:backgroundTint="@color/surface"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_gravity="center"
+        app:cardCornerRadius="8dp"
+        android:visibility="gone"
+        >
+    <LinearLayout
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chipFruity"
-            style="@style/ThinnerChip"
-            android:layout_width="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:orientation="vertical"
+        android:elevation="8dp"
+        >
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:checkable="true"
-            android:padding="0dp"
-            android:text="@string/fruity"
-            android:textAlignment="center"
-            app:chipStartPadding="10dp" />
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chipSour"
-            style="@style/ThinnerChip"
-            android:layout_width="70dp"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/search_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                android:background="@color/surface"
+                android:drawableStart="@android:drawable/ic_menu_search"
+                android:hint="@string/search" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/filter"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checkable="true"
-            android:text="@string/acidity"
-            android:textAlignment="center" />
+            android:layout_margin="3dp"
+            app:chipSpacingVertical="0dp">
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chipSparkling"
-            style="@style/ThinnerChip"
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:checkable="true"
-            android:text="@string/sparkling"
-            android:textAlignment="center" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipFruity"
+                style="@style/ThinnerChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".1"
+                android:checkable="true"
+                android:padding="0dp"
+                android:text="@string/fruity"
+                android:textAlignment="center" />
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chipNuts"
-            style="@style/ThinnerChip"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:checkable="true"
-            android:text="@string/nuts"
-            android:textAlignment="center" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipSour"
+                style="@style/ThinnerChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".1"
+                android:checkable="true"
+                android:text="@string/acidity"
+                android:textAlignment="center" />
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chipSweet"
-            style="@style/ThinnerChip"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:checkable="true"
-            android:text="@string/sweet"
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipSparkling"
+                style="@style/ThinnerChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".1"
+                android:checkable="true"
+                android:text="@string/sparkling"
+                android:textAlignment="center" />
 
-            android:textAlignment="center" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipNuts"
+                style="@style/ThinnerChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".1"
+                android:checkable="true"
+                android:text="@string/nuts"
+                android:textAlignment="center" />
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/favorite"
-            style="@style/ThinnerChip"
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:checkable="true"
-            android:icon="@android:drawable/btn_star_big_on"
-            android:text="@string/favorite"
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipSweet"
+                style="@style/ThinnerChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".1"
+                android:checkable="true"
+                android:text="@string/sweet"
 
-            android:textAlignment="center" />
+                android:textAlignment="center" />
 
+            <com.google.android.material.chip.Chip
+                android:id="@+id/favorite"
+                style="@style/ThinnerChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".1"
+                android:checkable="true"
+                android:icon="@android:drawable/btn_star_big_on"
+                android:text="@string/favorite"
+
+                android:textAlignment="center" />
+
+
+        </com.google.android.material.chip.ChipGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
         <com.google.android.material.chip.Chip
             android:id="@+id/chipFilter"
-            android:layout_width="70dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/blueLight"
+            style="@style/ButtonStyle_Primary"
             android:text="@string/filter"
             android:textAlignment="center" />
-    </com.google.android.material.chip.ChipGroup>
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipClear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ButtonStyle_Outlined"
+            android:text="@string/clear"
+            android:layout_marginStart="5dp"
+            android:textAlignment="center" />
+    </LinearLayout>
+    </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
-    <ImageButton
-        android:id="@+id/updatebtn"
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/info_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginRight="50dp"
-        android:layout_marginBottom="20dp"
-        app:srcCompat="@android:drawable/ic_popup_sync" />
+        android:layout_marginTop="60dp"
+        android:layout_marginStart="70dp"
+        android:backgroundTint="@color/surface"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_gravity="center"
+        app:cardCornerRadius="8dp"
+        android:visibility="gone"
+        >
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:orientation="vertical"
+            android:elevation="8dp"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+                <ImageButton
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:scaleType="fitCenter"
+                    android:backgroundTint="@color/surface"
+                    android:src="@drawable/marker_pink" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/fruity"
+                    style="@style/TextStyle_BodySmall"
+                    android:textColor="@color/primary"
+                    android:gravity="center"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+                <ImageButton
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:scaleType="fitCenter"
+                    android:backgroundTint="@color/surface"
+                    android:src="@drawable/marker_orange" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/nuts"
+                    style="@style/TextStyle_BodySmall"
+                    android:textColor="@color/primary"
+                    android:gravity="center"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+                <ImageButton
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:scaleType="fitCenter"
+                    android:backgroundTint="@color/surface"
+                    android:src="@drawable/marker_green" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/sparkling"
+                    style="@style/TextStyle_BodySmall"
+                    android:textColor="@color/primary"
+
+                    android:gravity="center"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+                <ImageButton
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:scaleType="fitCenter"
+                    android:backgroundTint="@color/surface"
+                    android:src="@drawable/marker" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/makgeolli"
+                    style="@style/TextStyle_BodySmall"
+                    android:textColor="@color/primary"
+                    android:gravity="center"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <!-- Container flottant -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/floatingContainer"
+        android:layout_width="50dp"
+        android:layout_height="100dp"
+        android:layout_gravity="top|start"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/background"
+        android:elevation="8dp"
+        app:cardCornerRadius="16dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            >
+
+            <!-- Bouton Filtre -->
+            <ImageButton
+                android:id="@+id/btnFilter"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Filtrer"
+                android:src="@android:drawable/ic_menu_sort_by_size"
+                app:tint="@color/tertiary" />
+
+            <!-- Bouton Synchronisation -->
+            <ImageButton
+                android:id="@+id/updatebtn"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Synchroniser"
+                android:src="@android:drawable/ic_popup_sync"
+                app:tint="@color/tertiary" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/floatingContainerInfo"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="30dp"
+
+        android:background="@color/background"
+        app:cardCornerRadius="16dp">
+        <ImageButton
+            android:id="@+id/infobtn"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_gravity="center"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Info"
+
+            android:scaleType="fitCenter"
+            android:src="@android:drawable/ic_dialog_info"
+            app:tint="@color/tertiary" />
+    </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+
+
+
 
 </RelativeLayout>

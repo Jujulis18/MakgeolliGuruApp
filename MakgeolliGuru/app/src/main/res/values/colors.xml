@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="blueLight">#D1FFFD</color>
+    <!-- Couleurs pour le thème clair -->
+    <color name="primary">#035460</color> <!-- Bleu Canard -->
+    <color name="secondary">#D98D7B</color> <!-- Corail -->
+    <color name="tertiary">#D1AC89</color> <!-- Marron clair -->
+    <color name="background">#F0EBE3</color> <!-- Beige clair -->
+    <color name="surface">#FAF7F2</color> <!-- Blanc cassé -->
+    <color name="onPrimary">#FFFFFF</color> <!-- Texte blanc sur fond primaire -->
+    <color name="onSecondary">#FFFFFF</color> <!-- Texte blanc sur fond secondaire -->
+    <color name="onBackground">#035460</color> <!-- Texte bleu sur fond clair -->
+    <color name="onSurface">#035460</color> <!-- Texte bleu sur surface -->
+
+    <!-- Couleurs pour le thème sombre -->
+    <color name="primary_dark">#68A6B0</color> <!-- Bleu Canard plus clair pour dark mode -->
+    <color name="secondary_dark">#B86A58</color> <!-- Corail foncé -->
+    <color name="tertiary_dark">#9C7B5D</color> <!-- Marron foncé -->
+    <color name="background_dark">#1E1E1E</color> <!-- Fond sombre -->
+    <color name="surface_dark">#2C2C2C</color> <!-- Surface sombre -->
+    <color name="onPrimary_dark">#000000</color> <!-- Texte noir sur fond primaire sombre -->
+    <color name="onSecondary_dark">#000000</color> <!-- Texte noir sur fond secondaire sombre -->
+    <color name="onBackground_dark">#FAF7F2</color> <!-- Texte clair sur fond sombre -->
+    <color name="onSurface_dark">#FAF7F2</color> <!-- Texte clair sur surface sombre -->
 </resources>

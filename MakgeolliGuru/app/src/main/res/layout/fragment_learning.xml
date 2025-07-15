@@ -1,45 +1,76 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    tools:context=".profile.ProfileFragment">
 
-    <!-- Non-scrollable section at the top -->
+
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="#035460"
-        android:padding="5dp">
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="match_parent"
-            android:src="@drawable/book"
-            android:layout_gravity="left"
-            android:padding="1dp"
-            app:tint="@android:color/white"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Learning"
-            android:textColor="@color/white"
-            android:textSize="20dp" />
-    </LinearLayout>
-
-    <!-- Scrollable section -->
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@color/primary"
+            android:orientation="horizontal"
+            android:padding="15dp">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:src="@drawable/book"
+                app:tint="@color/background"
+                android:layout_marginEnd="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/learning"
+                style="@style/TextStyle_Subtitle"
+                android:textSize="18sp"
+                android:textColor="@color/background"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
+
+        <!-- TabLayout pour les onglets -->
+        <!--<com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabMode="fixed"
+            app:tabGravity="fill"
+            app:tabIndicatorColor="@color/black"
+            app:tabTextColor="@color/black"
+            app:tabSelectedTextColor="@color/black"/>-->
+
+        <!-- ViewPager2 pour gérer le contenu des onglets -->
+      <!--  <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>-->
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        >
+
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/dynamic_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
-            <!-- Dynamic content will be added here -->
-        </LinearLayout>
-    </ScrollView>
+            android:padding="16dp" />
+    </LinearLayout>
 </LinearLayout>
+</FrameLayout>

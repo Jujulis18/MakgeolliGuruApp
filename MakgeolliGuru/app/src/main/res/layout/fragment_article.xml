@@ -5,36 +5,57 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="112dp"
+        android:background="@color/primary"
         android:orientation="horizontal"
-        android:background="#035460"
-        android:padding="5dp">
+        android:padding="16dp"
+        android:radius="26dp">
 
         <ImageView
-            android:layout_width="80dp"
-            android:layout_height="match_parent"
-            android:src="@drawable/book"
-            android:layout_gravity="left"
-            android:padding="1dp"
-            app:tint="@android:color/white"
-            />
-        <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/closebtn"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/learning"
-            android:textColor="@color/white"
-            android:textSize="20dp" />
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            android:layout_gravity="top"
+            />
+
+        <TextView
+            android:id="@+id/tagsView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="tags"
+            android:fontFamily="@style/TextStyle_Label"
+            android:textColor="@color/background"
+            android:layout_gravity="bottom" />
+
+        <TextView
+            android:id="@+id/dateView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date"
+            android:fontFamily="@style/TextStyle_Label"
+            android:textColor="@color/background"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="250dp"/>
 
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/zoomableLayout">
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -47,8 +68,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Article Title"
-        android:textSize="24sp"
-        android:textStyle="bold"
+        style="@style/TextStyle_Title"
         android:padding="16dp"/>
 
     <!-- Intro -->
@@ -57,6 +77,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Paragraph 3 Text"
+        style="@style/TextStyle_Body"
         android:padding="16dp"/>
 
     <!-- Paragraph 1 -->
@@ -69,7 +90,7 @@
         <!-- Image -->
         <ImageView
             android:id="@+id/imageView1"
-            android:layout_width="0dp"
+            android:layout_width="80dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:src="@drawable/book"
@@ -80,6 +101,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
+            android:padding="10dp"
             android:orientation="vertical">
 
             <!-- Paragraph Title -->
@@ -88,14 +110,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Paragraph 1 Title"
-                android:textStyle="bold"/>
+                style="@style/TextStyle_Subtitle"/>
 
             <!-- Paragraph Text -->
             <TextView
                 android:id="@+id/paragraphText1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Paragraph 1 Text"/>
+                android:text="Paragraph 1 Text"
+                style="@style/TextStyle_Body"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -111,6 +134,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
+
+            android:padding="10dp"
             android:orientation="vertical">
 
             <!-- Paragraph Title -->
@@ -119,20 +144,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Paragraph 2 Title"
-                android:textStyle="bold"/>
+                style="@style/TextStyle_Subtitle"/>
 
             <!-- Paragraph Text -->
             <TextView
                 android:id="@+id/paragraphText2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Paragraph 2 Text"/>
+                android:text="Paragraph 2 Text"
+                style="@style/TextStyle_Body"/>
         </LinearLayout>
 
         <!-- Image -->
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="0dp"
+            android:layout_width="80dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:src="@drawable/book"/>
@@ -148,7 +174,7 @@
         <!-- Image -->
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="0dp"
+            android:layout_width="80dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:src="@drawable/book"/>
@@ -158,6 +184,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
+            android:padding="10dp"
             android:orientation="vertical">
 
             <!-- Paragraph Title -->
@@ -166,26 +193,35 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Paragraph 3 Title"
-                android:textStyle="bold"/>
+                style="@style/TextStyle_Subtitle"/>
 
             <!-- Paragraph Text -->
             <TextView
                 android:id="@+id/paragraphText3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Paragraph 3 Text"/>
+                android:text="Paragraph 3 Text"
+                style="@style/TextStyle_Body"/>
         </LinearLayout>
 
 
     </LinearLayout>
-    <!-- Title -->
     <TextView
         android:id="@+id/ConclusionView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Paragraph 3 Text"
-        android:padding="16dp"/>
+        android:padding="16dp"
+        style="@style/TextStyle_Body"/>
+    <TextView
+        android:id="@+id/InformationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Writer information"
+        android:padding="16dp"
+        style="@style/TextStyle_BodySmall"/>
 
 </LinearLayout>
     </ScrollView>
+    </LinearLayout>
 </LinearLayout>

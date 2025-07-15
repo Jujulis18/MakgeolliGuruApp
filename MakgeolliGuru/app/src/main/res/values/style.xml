@@ -1,5 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+
+
+    <!-- Base application theme -->
+    <style name="Theme.MyApp" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Personnalisation du thème global -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorOnPrimary">@color/onPrimary</item>
+        <item name="colorOnSecondary">@color/onSecondary</item>
+        <item name="android:textColorPrimary">@color/onBackground</item>
+        <item name="android:textColorSecondary">@color/onSurface</item>
+        <item name="android:windowBackground">@color/background</item>
+        <item name="android:statusBarColor">@color/primary</item>
+    </style>
+
+    <!-- Text styles -->
+    <style name="TextStyle_Title" parent="TextAppearance.AppCompat.Large">
+        <item name="android:fontFamily">@font/playfairdisplay_bold</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColor">#035460</item> <!-- Bleu Canard -->
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:maxLines">3</item>
+        <item name="android:ellipsize">none</item>
+    </style>
+
+    <style name="TextStyle_Subtitle" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:fontFamily">@font/playfairdisplay_semibold</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">#D98D7B</item><!-- Corail -->
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:maxLines">3</item>
+        <item name="android:ellipsize">none</item>
+    </style>
+
+    <style name="TextStyle_Body" parent="TextAppearance.AppCompat.Body1">
+        <item name="android:fontFamily">@font/mulish_regular</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@android:color/black</item> <!-- Black -->
+    </style>
+
+    <style name="TextStyle_BodySmall" parent="TextAppearance.AppCompat.Body2">
+        <item name="android:fontFamily">@font/mulish_regular</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@android:color/black</item> <!-- Black -->
+    </style>
+
+    <style name="TextStyle_Label" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:fontFamily">@font/inter_18pt_regular</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#D1AC89</item> <!-- Marron clair -->
+    </style>
+
+    <!-- Button styles -->
+    <style name="ButtonStyle_Primary" parent="Widget.Material3.Button">
+        <item name="android:fontFamily">@font/inter_18pt_regular</item>
+        <item name="android:backgroundTint">@color/primary</item>
+        <item name="android:textColor">@color/onPrimary</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:radius">8dp</item>
+    </style>
+
+    <style name="ButtonStyle_Secondary" parent="Widget.Material3.Button">
+        <item name="android:backgroundTint">@color/secondary</item>
+        <item name="android:textColor">@color/onSecondary</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:radius">8dp</item>
+    </style>
+
+    <style name="ButtonStyle_Outlined" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:strokeColor">@color/tertiary</item>
+        <item name="android:textColor">@color/secondary</item>
+    </style>
+
+
+    <!-- Card style -->
+    <style name="CardStyle">
+        <item name="android:background">@color/surface</item>
+        <item name="android:elevation">4dp</item>
+        <item name="android:radius">26dp</item>
+    </style>
+
+    <style name="CustomAlertDialog" parent="Theme.MaterialComponents.Light.Dialog.Alert">
+        <!-- Primary color for buttons and highlights -->
+        <item name="colorPrimary">@color/primary</item>
+
+        <!-- Text colors -->
+        <item name="android:textColorPrimary">@android:color/black</item>
+        <item name="android:textColorSecondary">@android:color/black</item>
+
+        <!-- Background with rounded corners -->
+        <item name="android:background">@drawable/dialog_background</item>
+
+        <!-- Dialog width customization -->
+        <item name="android:windowMinWidthMajor">90%</item>
+        <item name="android:windowMinWidthMinor">90%</item>
+
+        <!-- Custom button style -->
+        <item name="buttonStyle">@style/ButtonStyle_Primary</item>
+    </style>
+
+
+    <style name="DialogTitleStyle">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@android:color/holo_blue_dark</item> <!-- Blue title -->
+        <item name="android:textAlignment">center</item> <!-- Center text -->
+    </style>
+
+    <style name="DialogMessageStyle">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@android:color/black</item> <!-- Black text -->
+        <item name="android:textAlignment">center</item> <!-- Center text -->
+    </style>
+
+
     <style name="MyTransparentBottomSheetDialogTheme" parent="Theme.AppCompat.Light">
         <!--item name="android:background">@android:color/transparent</item-->
         <item name="android:colorBackground">@android:color/transparent</item>
@@ -12,7 +132,15 @@
     <style name="ThinnerChip" parent="Widget.MaterialComponents.Chip.Action">
         <item name="chipCornerRadius">12dp</item>
         <item name="chipMinHeight">24dp</item>
-        <item name="android:textAppearance">@style/SmallerText</item>
+        <item name="android:strokeColor">@color/tertiary</item>
+        <item name="android:textColor">@color/primary</item>
+        <item name="android:activatedBackgroundIndicator">@color/secondary</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">5pt</item>
+        <item name="fontFamily"> @font/inter_18pt_regular</item>
+        <item name="android:background">@color/surface</item>
+
+
     </style>
 
     <style name="SmallerText" parent="TextAppearance.AppCompat.Small">

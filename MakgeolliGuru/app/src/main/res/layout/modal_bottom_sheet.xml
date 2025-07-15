@@ -1,47 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:backgroundTint="@color/surface"
+    android:clickable="true"
+    android:focusable="true"
+    android:layout_gravity="center"
+    app:cardCornerRadius="26dp"
+    >
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/modalBottomSheetContainer"
+    android:padding= "20dp"
     app:behavior_hideable="false"
     app:behavior_draggable="true"
-    android:padding="15dp"
-    android:background="@color/white">
-
+    android:background="@color/surface">
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp">
 
-<TextView
-android:layout_width="329dp"
-    android:layout_height="wrap_content"
-    android:text="@string/makgeolli_information"
-    android:textSize="20sp"
-    android:textColor="@color/black"
-    android:layout_gravity="center"
-    android:gravity="center"/>
-    <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:padding="15dp"
-        android:layout_gravity="right"
-        android:contentDescription="@string/app_name"
-        android:src="@android:drawable/ic_menu_close_clear_cancel"
-        android:id="@+id/close"/>
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="15dp"
+            android:layout_gravity="end"
+            android:contentDescription="@string/app_name"
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            android:id="@+id/close"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:layout_marginEnd="10dp">
+
+            <ImageButton
+                android:id="@+id/favorisbtn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="10dp"
+                android:background="@color/surface"
+                android:src="@android:drawable/btn_star_big_off" />
+
+            <ImageButton
+                android:id="@+id/savedbtn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/surface"
+                android:src="@android:drawable/ic_input_get"
+                app:tint="?attr/colorControlNormal"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:gravity="start"
+        android:orientation="horizontal"
+        tools:ignore="UseCompoundDrawables">
+        <TextView
+            android:id="@+id/makgeolliName"
+            android:text="MakgeolliName"
+            style="@style/TextStyle_Title"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:layout_marginTop="2dp"/>
+
 
     </LinearLayout>
 
-<LinearLayout
+
+    <LinearLayout
 android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="20dp">
+
 
 
 <LinearLayout
@@ -49,43 +95,13 @@ android:id="@+id/folder"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_weight="1"
-    android:layout_marginStart="8dp"
     android:layout_marginEnd="4dp"
-    android:layout_marginTop="4dp"
+    android:layout_marginTop="50dp"
     android:layout_marginBottom="4dp"
-    android:gravity="center"
+    android:gravity="start|center_vertical"
     android:orientation="vertical"
     tools:ignore="UseCompoundDrawables">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        tools:ignore="UseCompoundDrawables">
-        <TextView
-            android:id="@+id/makgeolliName"
-            android:text="MakgeolliName"
-            android:textStyle="bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:padding="2dp"
-            android:layout_marginTop="2dp"/>
-
-    <ImageButton
-        android:id="@+id/favorisbtn"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@android:drawable/btn_star_big_off"
-        android:background="@color/white"/>
-    </LinearLayout>
 
         <LinearLayout
             android:id="@+id/ratingStar"
@@ -93,13 +109,12 @@ android:id="@+id/folder"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
-            android:layout_marginTop="10sp"
             tools:ignore="UseCompoundDrawables">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
+                android:background="@color/surface"
                 android:orientation="horizontal">
 
                 <TextView
@@ -110,9 +125,7 @@ android:id="@+id/folder"
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text="@string/sweet"
-                    android:textColor="#000"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    style="@style/TextStyle_Body" />
 
                 <RatingBar
                     android:id="@+id/ratingBarSweet"
@@ -126,7 +139,7 @@ android:id="@+id/folder"
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
+                android:background="@color/surface"
                 android:orientation="horizontal">
                 <TextView
                     android:id="@+id/acidity"
@@ -136,9 +149,7 @@ android:id="@+id/folder"
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text="@string/acidity"
-                    android:textColor="#000"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    style="@style/TextStyle_Body" />
                 <RatingBar
                     android:id="@+id/ratingBarAcidity"
                     android:layout_width="wrap_content"
@@ -152,7 +163,7 @@ android:id="@+id/folder"
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
+                android:background="@color/surface"
                 android:orientation="horizontal">
 
                 <TextView
@@ -163,9 +174,7 @@ android:id="@+id/folder"
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text="@string/texture"
-                    android:textColor="#000"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    style="@style/TextStyle_Body" />
 
                 <RatingBar
                     android:id="@+id/ratingBarTexture"
@@ -179,7 +188,7 @@ android:id="@+id/folder"
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
+                android:background="@color/surface"
                 android:orientation="horizontal">
                 <TextView
                     android:id="@+id/sparkling"
@@ -189,9 +198,7 @@ android:id="@+id/folder"
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text="@string/sparkling"
-                    android:textColor="#000"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    style="@style/TextStyle_Body" />
                 <RatingBar
                     android:id="@+id/ratingBarSparkling"
                     android:layout_width="wrap_content"
@@ -211,26 +218,17 @@ android:id="@+id/folder"
         android:layout_margin="15dp"
         android:padding="5dp"
         android:contentDescription="@string/app_name"
-        android:src="@drawable/marker"/>
+        android:src="@drawable/marker"
+        android:id="@+id/bottleImg"/>
 
 </LinearLayout>
 <LinearLayout
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="20dp">
+    >
 
-    <TextView
-        android:id="@+id/makgeolliInfo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textSize="16dp"
-        android:padding="2dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/more_info"
-        android:textStyle="bold"
-        android:gravity="center"/>
+
 
     <LinearLayout
         android:id="@+id/percent"
@@ -238,21 +236,19 @@ android:id="@+id/folder"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         tools:ignore="UseCompoundDrawables"
-        android:layout_marginHorizontal="15dp"
         android:layout_marginTop="10sp">
 
 
 
             <TextView
                 android:id="@+id/percentTitle"
-                android:layout_width="100dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:textColor="#000"
-                android:textSize="14sp"
-                android:textStyle="bold"
+                android:layout_marginEnd="10dp"
+                style="@style/TextStyle_Body"
                 android:text="@string/alcool_percentage"/>
 
         <TextView
@@ -262,8 +258,7 @@ android:id="@+id/folder"
             android:layout_gravity="center_horizontal"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textColor="#000"
-            android:textSize="14sp"
+            style="@style/TextStyle_BodySmall"
             android:text="..."/>
 
     </LinearLayout>
@@ -273,21 +268,19 @@ android:id="@+id/folder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        tools:ignore="UseCompoundDrawables"
-        android:layout_marginHorizontal="15dp">
+        tools:ignore="UseCompoundDrawables">
 
 
 
         <TextView
             android:id="@+id/ingredientTitle"
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textColor="#000"
-            android:textSize="14sp"
-            android:textStyle="bold"
+            style="@style/TextStyle_Body"
+            android:layout_marginEnd="10dp"
             android:text="@string/ingredients"/>
 
         <TextView
@@ -297,8 +290,8 @@ android:id="@+id/folder"
             android:layout_gravity="center_horizontal"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textColor="#000"
-            android:textSize="14sp"
+
+            style="@style/TextStyle_BodySmall"
             android:text=".."/>
     </LinearLayout>
 
@@ -308,22 +301,20 @@ android:id="@+id/folder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        tools:ignore="UseCompoundDrawables"
-        android:layout_marginHorizontal="15dp">
+        tools:ignore="UseCompoundDrawables">
 
 
 
         <TextView
             android:id="@+id/localisationTitle"
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textColor="#000"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:text="@string/localisation"/>
+            style="@style/TextStyle_Body"
+            android:text="@string/localisation"
+            android:layout_marginEnd="10dp"/>
 
         <TextView
             android:id="@+id/localisationText"
@@ -332,8 +323,8 @@ android:id="@+id/folder"
             android:layout_gravity="center_horizontal"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textColor="#000"
-            android:textSize="14sp"
+
+            style="@style/TextStyle_BodySmall"
             android:text="..."/>
     </LinearLayout>
 
@@ -343,7 +334,6 @@ android:id="@+id/folder"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         tools:ignore="UseCompoundDrawables"
-        android:layout_marginHorizontal="15dp"
         android:layout_marginTop="10sp">
 
 
@@ -354,18 +344,16 @@ android:id="@+id/folder"
             android:layout_gravity="center_horizontal"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textColor="#000"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:text="@string/more_infos"/>
+            style="@style/TextStyle_Body"
+            android:text="@string/more_infos"
+            android:layout_marginEnd="10dp"/>
 
         <TextView
             android:id="@+id/moreInfoText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:textColor="#000"
-            android:textSize="14sp"
+            style="@style/TextStyle_BodySmall"
             android:text="..."/>
     </LinearLayout>
 
@@ -373,3 +361,4 @@ android:id="@+id/folder"
 
 
 </LinearLayout>
+</androidx.cardview.widget.CardView>

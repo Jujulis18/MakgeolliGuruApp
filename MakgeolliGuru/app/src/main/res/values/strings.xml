@@ -6,7 +6,7 @@
 
     <string name="sweet">Sweet</string>
     <string name="acidity">Acidity</string>
-    <string name="texture">Texture</string>
+    <string name="texture">Body</string>
     <string name="sparkling">Sparkling</string>
     <string name="fruity">Fruity</string>
     <string name="favorite">Favorite</string>
@@ -30,7 +30,6 @@
     <string name="test_knowledge_link">Test your knowledge</string>
     <string name="test_personality_link">Get your Makgeolli profile</string>
     <string name="profile_part1">Your are :</string>
-    <string name="profile_name_sour">Sour Makgeolli</string>
     <string name="profile_character">Your character :</string>
     <string name="profile_description_sour">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut dictum rutrum augue in venenatis. Praesent nec rhoncus nisi</string>
 
@@ -39,5 +38,20 @@
     <string name="ingredients">Ingredients:</string>
     <string name="localisation">Localisation:</string>
     <string name="more_infos">More information:</string>
+    <string name="favorite_link">favorite</string>
+    <string name="sparkling_profile">You might enjoy a makgeolli that fits well with outdoor activities, perhaps a sparkling and refreshing option.</string>
+    <string name="fruity_profile">A smooth and contemplative makgeolli with fruity or sour notes could be your ideal choice.</string>
+    <string name="sweet_profile">A lively and sociable makgeolli with sweet and light-hearted characteristics may suit your taste.</string>
+    <string name="other_profile">Your preferences are diverse. You may enjoy exploring different types of makgeolli.;</string>
+    <string name="sparkling_name">Sparkling Makgeolli</string>
+    <string name="fruity_name">Fruity Makgeolli</string>
+    <string name="sweet_name">Nuts Makgeolli</string>
+    <string name="search">search</string>
+    <string name="Error">Error</string>
+    <string name="error_favorite_list">\"You don\'t have favorite makgeolli."\</string>
+    <string name="error_makgeolli_list">"Did not match any Makgeolli"\</string>
+    <string name="saved">Saved</string>
+    <string name="clear">Clear</string>
+    <string name="makgeolli">Original</string>
 
 </resources>
