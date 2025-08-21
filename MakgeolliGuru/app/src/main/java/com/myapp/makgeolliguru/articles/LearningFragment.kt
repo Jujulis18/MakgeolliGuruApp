@@ -8,9 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.appbar.MaterialToolbar
 import com.myapp.makgeolliguru.R
 import com.myapp.makgeolliguru.MainActivity
 import com.myapp.makgeolliguru.map.MakgeolliList
@@ -31,6 +34,15 @@ class LearningFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_learning, container, false)
+
+        view.findViewById<MaterialToolbar>(R.id.toolbar)?.apply {
+            setTitle(R.string.learning)
+            setTitleTextColor(ContextCompat.getColor(requireContext(), R.color.background))
+
+            ViewCompat.setOnApplyWindowInsetsListener(this) { v, insets ->
+                insets
+            }
+        }
 
         prefs = requireContext().getSharedPreferences(MainActivity.SHARED_PREF, Context.MODE_PRIVATE)
         recyclerView = view.findViewById(R.id.dynamic_content)

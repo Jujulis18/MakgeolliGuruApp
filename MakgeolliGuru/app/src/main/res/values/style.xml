@@ -14,6 +14,10 @@
         <item name="android:textColorSecondary">@color/onSurface</item>
         <item name="android:windowBackground">@color/background</item>
         <item name="android:statusBarColor">@color/primary</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:fitsSystemWindows">false</item> <!-- important -->
+
     </style>
 
     <!-- Text styles -->
@@ -123,6 +127,13 @@
     <style name="MyTransparentBottomSheetDialogTheme" parent="Theme.AppCompat.Light">
         <!--item name="android:background">@android:color/transparent</item-->
         <item name="android:colorBackground">@android:color/transparent</item>
+    </style>
+
+    <style name="Widget.BottomNavigationView" parent="Widget.Material3.BottomNavigationView">
+        <item name="itemTextAppearanceActive">@style/TextAppearance.Material3.LabelLarge</item>
+        <item name="itemTextAppearanceInactive">@style/TextAppearance.Material3.LabelMedium</item>
+        <item name="itemIconSize">28dp</item>
+        <item name="itemRippleColor">@color/primary</item>
     </style>
 
     <style name="customRatingBar"

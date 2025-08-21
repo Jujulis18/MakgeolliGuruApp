@@ -7,9 +7,15 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.Insets;
+import androidx.core.view.OnApplyWindowInsetsListener;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.material.appbar.MaterialToolbar;
 import com.myapp.makgeolliguru.tools.DataManager;
 import com.myapp.makgeolliguru.R;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -36,6 +42,13 @@ public class MapFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_map, container, false);
         View bottomSheetView = inflater.inflate(R.layout.modal_bottom_sheet, container, false);
+
+        MaterialToolbar toolbar = view.findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.makgeolli_map);
+        toolbar.setTitleTextColor(ContextCompat.getColor(requireContext(), R.color.background));
+
+        ViewCompat.setOnApplyWindowInsetsListener(toolbar, (v, insets) -> insets);
+
 
         dataManager = new DataManager(getActivity().getApplicationContext());
         mapManager = new MapManager();

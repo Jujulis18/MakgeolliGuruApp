@@ -7,10 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.google.android.material.appbar.MaterialToolbar
 import com.myapp.makgeolliguru.MainActivity
 import com.myapp.makgeolliguru.R
 import com.myapp.makgeolliguru.map.MakgeolliList
@@ -25,8 +27,10 @@ class SavedFragment:Fragment() {
         ): View? {
             val view = inflater.inflate(R.layout.fragment_favorite, container, false)
             // update title
-            val textView = view.findViewById<TextView>(R.id.titleText)
-            textView.text = getString(R.string.saved)
+            val toolbar = view.findViewById<MaterialToolbar>(R.id.toolbar)
+            toolbar.title = getString(R.string.saved)
+            toolbar.navigationIcon = ContextCompat.getDrawable( requireContext(), android.R.drawable.ic_input_get)
+
 
             val prefs = requireContext().getSharedPreferences(MainActivity.SHARED_PREF, Context.MODE_PRIVATE)
             var savedListString = prefs.getString(MainActivity.SAVED_LIST, null)

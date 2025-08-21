@@ -8,6 +8,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -19,6 +21,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.material.appbar.MaterialToolbar;
 import com.myapp.makgeolliguru.InfoFragment;
 import com.myapp.makgeolliguru.R;
 
@@ -35,6 +38,12 @@ public class ProfileFragment extends Fragment  {
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        MaterialToolbar toolbar = view.findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.profile);
+        toolbar.setTitleTextColor(ContextCompat.getColor(requireContext(), R.color.background));
+
+        ViewCompat.setOnApplyWindowInsetsListener(toolbar, (v, insets) -> insets);
 
         ImageButton infoBtn = view.findViewById(R.id.buttonInfo);
 
