@@ -6,8 +6,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context=".profile.ProfileFragment">
-
 
 
     <LinearLayout
@@ -15,31 +15,16 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="?attr/actionBarSize"
             android:background="@color/primary"
-            android:orientation="horizontal"
-            android:padding="15dp">
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="left"
-                android:src="@drawable/user"
-                app:tint="@color/background"
-                android:layout_marginEnd="10dp"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/profile"
-                style="@style/TextStyle_Subtitle"
-                android:textSize="18sp"
-                android:textColor="@color/background"
-                android:layout_gravity="center"/>
-
-    </LinearLayout>
+            android:fitsSystemWindows="true"
+            app:navigationIcon="@drawable/user"
+            app:title="@string/profile"
+            app:titleTextColor="@color/background"
+            app:navigationIconTint="@color/background"/>
 
     <ImageButton
         android:id="@+id/buttonInfo"

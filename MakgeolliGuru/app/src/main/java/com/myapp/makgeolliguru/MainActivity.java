@@ -2,10 +2,16 @@ package com.myapp.makgeolliguru;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.graphics.Insets;
+import androidx.core.view.OnApplyWindowInsetsListener;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 
 import com.myapp.makgeolliguru.articles.LearningFragment;
@@ -38,8 +44,12 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     protected void onCreate(Bundle savedInstanceState) {
         System.out.print(FAVORITE_LIST);
         super.onCreate(savedInstanceState);
+        WindowCompat.setDecorFitsSystemWindows(getWindow(), true);
         setContentView(R.layout.activity_main);
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
+
+
+
         bottomNavigationView
                 .setOnNavigationItemSelectedListener(this);
         bottomNavigationView.setSelectedItemId(R.id.map);
@@ -53,22 +63,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         //Fragment fragment = null;
         switch (item.getItemId()) {
             case R.id.mapNav:
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.flFragment, mapFragment)
-                        .commit();
+                setCurrentFragment(mapFragment);
                 return true;
             case R.id.learningNav:
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.flFragment, learningFragment)
-                        .commit();
+                setCurrentFragment(learningFragment);
                 return true;
             case R.id.profileNav:
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.flFragment, profileFragment)
-                        .commit();
+                setCurrentFragment(profileFragment);
                 return true;
         }
         return false;
